@@ -13,9 +13,6 @@
         "packagesPath": "C:\\Users\\Kobax\\.nuget\\packages\\",
         "outputPath": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\Kobax\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -80,9 +77,6 @@
         "packagesPath": "C:\\Users\\Kobax\\.nuget\\packages\\",
         "outputPath": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Services\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\Kobax\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

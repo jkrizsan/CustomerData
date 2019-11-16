@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CustomerData.Data.Models
+namespace CompanyData.Data.Models
 {
     public class Order
     {

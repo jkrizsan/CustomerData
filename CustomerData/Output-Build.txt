@@ -1,0 +1,8 @@
+﻿1>------ Build started: Project: CompanyData.Data, Configuration: Debug Any CPU ------
+1>CompanyData.Data -> D:\AI\CustomerData\CustomerData\CustomerData.Models\bin\Debug\netcoreapp3.0\CompanyData.Data.dll
+2>------ Build started: Project: CompanyData.Services, Configuration: Debug Any CPU ------
+2>CompanyData.Services -> D:\AI\CustomerData\CustomerData\CustomerData.Services\bin\Debug\netcoreapp3.0\CompanyData.Services.dll
+3>------ Build started: Project: CompanyData.Web, Configuration: Debug Any CPU ------
+3>CompanyData.Web -> D:\AI\CustomerData\CustomerData\CustomerData\bin\Debug\netcoreapp3.0\CompanyData.Web.dll
+3>CompanyData.Web -> D:\AI\CustomerData\CustomerData\CustomerData\bin\Debug\netcoreapp3.0\CompanyData.Web.Views.dll
+========== Build: 3 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

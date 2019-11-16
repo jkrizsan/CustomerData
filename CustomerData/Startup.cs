@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CustomerData.Data;
+using CompanyData.Data;
+using CompanyData.Services;
+using CompanyData.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,7 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace CustomerData
+namespace CompanyData
 {
     public class Startup
     {
@@ -26,7 +28,8 @@ namespace CustomerData
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<CustomerDataDbContext>(options =>
+            services.AddScoped<IGenerateDataService, GenerateDataService>();
+            services.AddDbContext<CompanyDataDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Connection")));
         }
 

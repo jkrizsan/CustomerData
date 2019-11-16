@@ -1,0 +1,11 @@
+D:\AI\CustomerData\CustomerData\CustomerData.Services\bin\Debug\netcoreapp3.0\CompanyData.Services.deps.json
+D:\AI\CustomerData\CustomerData\CustomerData.Services\bin\Debug\netcoreapp3.0\CompanyData.Services.dll
+D:\AI\CustomerData\CustomerData\CustomerData.Services\bin\Debug\netcoreapp3.0\CompanyData.Services.pdb
+D:\AI\CustomerData\CustomerData\CustomerData.Services\bin\Debug\netcoreapp3.0\CompanyData.Data.dll
+D:\AI\CustomerData\CustomerData\CustomerData.Services\bin\Debug\netcoreapp3.0\CompanyData.Data.pdb
+D:\AI\CustomerData\CustomerData\CustomerData.Services\obj\Debug\netcoreapp3.0\CompanyData.Services.csprojAssemblyReference.cache
+D:\AI\CustomerData\CustomerData\CustomerData.Services\obj\Debug\netcoreapp3.0\CompanyData.Services.AssemblyInfoInputs.cache
+D:\AI\CustomerData\CustomerData\CustomerData.Services\obj\Debug\netcoreapp3.0\CompanyData.Services.AssemblyInfo.cs
+D:\AI\CustomerData\CustomerData\CustomerData.Services\obj\Debug\netcoreapp3.0\CompanyData.Services.csproj.CopyComplete
+D:\AI\CustomerData\CustomerData\CustomerData.Services\obj\Debug\netcoreapp3.0\CompanyData.Services.dll
+D:\AI\CustomerData\CustomerData\CustomerData.Services\obj\Debug\netcoreapp3.0\CompanyData.Services.pdb

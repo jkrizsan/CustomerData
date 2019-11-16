@@ -4,18 +4,15 @@
     "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Services\\CustomerData.Services.csproj": {}
   },
   "projects": {
-    "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\CustomerData.Data.csproj": {
+    "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\CompanyData.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\CustomerData.Data.csproj",
-        "projectName": "CustomerData.Data",
-        "projectPath": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\CustomerData.Data.csproj",
+        "projectUniqueName": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\CompanyData.Data.csproj",
+        "projectName": "CompanyData.Data",
+        "projectPath": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\CompanyData.Data.csproj",
         "packagesPath": "C:\\Users\\Kobax\\.nuget\\packages\\",
         "outputPath": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\Kobax\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -80,9 +77,6 @@
         "packagesPath": "C:\\Users\\Kobax\\.nuget\\packages\\",
         "outputPath": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Services\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\Kobax\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -97,8 +91,8 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\CustomerData.Data.csproj": {
-                "projectPath": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\CustomerData.Data.csproj"
+              "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\CompanyData.Data.csproj": {
+                "projectPath": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\CompanyData.Data.csproj"
               }
             }
           }

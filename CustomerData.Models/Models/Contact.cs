@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CustomerData.Data.Models
+namespace CompanyData.Data.Models
 {
    public class Contact
     {
@@ -10,7 +10,7 @@ namespace CustomerData.Data.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public IEnumerable<Order> Orders { get; set; }
+        public List<Order> Orders { get; set; }
         public int NumnerOfOrders { get; set; }
         public double Income { get; set; }
     }

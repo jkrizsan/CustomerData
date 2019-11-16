@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerData.Web", "CustomerData.Web.csproj", "{EFD75C5F-D893-4501-8B91-99F7C0BCBA31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyData.Web", "CompanyData.Web.csproj", "{EFD75C5F-D893-4501-8B91-99F7C0BCBA31}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerData.Data", "..\CustomerData.Models\CustomerData.Data.csproj", "{E1174D70-377D-40D4-8CEC-D0FA27847217}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyData.Data", "..\CustomerData.Models\CompanyData.Data.csproj", "{E1174D70-377D-40D4-8CEC-D0FA27847217}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerData.Services", "..\CustomerData.Services\CustomerData.Services.csproj", "{B45689C3-567B-4470-8F97-46AC398779BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyData.Services", "..\CustomerData.Services\CompanyData.Services.csproj", "{B45689C3-567B-4470-8F97-46AC398779BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

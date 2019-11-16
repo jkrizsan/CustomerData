@@ -1,6 +1,6 @@
 using System;
 
-namespace CustomerData.Models
+namespace CompanyData.Models
 {
     public class ErrorViewModel
     {

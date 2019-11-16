@@ -9,3 +9,6 @@ CustomerData/obj/Debug/netcoreapp3.0/CustomerData.RazorAssemblyInfo.cache
 *.cache
 CustomerData.Models/bin/Debug/netcoreapp3.0/CustomerData.Data.dll
 *.dll
+*.ide-shm
+CustomerData/.vs/CompanyData/DesignTimeBuild/.dtbcache
+CustomerData/.vs/CompanyData/v16/.suo

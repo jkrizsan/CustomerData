@@ -1,11 +1,11 @@
-﻿using CustomerData.Data.Models;
+﻿using CompanyData.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CustomerData.Data
+namespace CompanyData.Data
 {
-    public class CustomerDataDbContext : DbContext
+    public class CompanyDataDbContext : DbContext
     {
-        public CustomerDataDbContext(DbContextOptions options) : base(options)
+        public CompanyDataDbContext(DbContextOptions options) : base(options)
         {
         }
 
