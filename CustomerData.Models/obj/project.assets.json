@@ -1250,32 +1250,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "CustomerData.Data/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.SqlServer": "3.0.0"
-        },
-        "compile": {
-          "bin/placeholder/CustomerData.Data.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/CustomerData.Data.dll": {}
-        }
-      },
-      "CustomerData.Services/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.0",
-        "dependencies": {
-          "CustomerData.Data": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/CustomerData.Services.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/CustomerData.Services.dll": {}
-        }
       }
     }
   },
@@ -4885,22 +4859,10 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
-    },
-    "CustomerData.Data/1.0.0": {
-      "type": "project",
-      "path": "../CustomerData.Models/CustomerData.Data.csproj",
-      "msbuildProject": "../CustomerData.Models/CustomerData.Data.csproj"
-    },
-    "CustomerData.Services/1.0.0": {
-      "type": "project",
-      "path": "../CustomerData.Services/CustomerData.Services.csproj",
-      "msbuildProject": "../CustomerData.Services/CustomerData.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.0": [
-      "CustomerData.Data >= 1.0.0",
-      "CustomerData.Services >= 1.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 3.0.0"
     ]
@@ -4912,11 +4874,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\AI\\CustomerData\\CustomerData\\CustomerData\\CustomerData.Web.csproj",
-      "projectName": "CustomerData.Web",
-      "projectPath": "D:\\AI\\CustomerData\\CustomerData\\CustomerData\\CustomerData.Web.csproj",
+      "projectUniqueName": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\CustomerData.Data.csproj",
+      "projectName": "CustomerData.Data",
+      "projectPath": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\CustomerData.Data.csproj",
       "packagesPath": "C:\\Users\\Kobax\\.nuget\\packages\\",
-      "outputPath": "D:\\AI\\CustomerData\\CustomerData\\CustomerData\\obj\\",
+      "outputPath": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -4934,14 +4896,7 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
-          "projectReferences": {
-            "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\CustomerData.Data.csproj": {
-              "projectPath": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Models\\CustomerData.Data.csproj"
-            },
-            "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Services\\CustomerData.Services.csproj": {
-              "projectPath": "D:\\AI\\CustomerData\\CustomerData\\CustomerData.Services\\CustomerData.Services.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -4975,9 +4930,6 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
-          "Microsoft.AspNetCore.App": {
-            "privateAssets": "none"
-          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }

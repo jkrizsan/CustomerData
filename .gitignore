@@ -7,3 +7,5 @@ CustomerData/.vs/CustomerData/v16/Server/sqlite3/storage.ide-wal
 CustomerData/obj/Debug/netcoreapp3.0/CustomerData.dll
 CustomerData/obj/Debug/netcoreapp3.0/CustomerData.RazorAssemblyInfo.cache
 *.cache
+CustomerData.Models/bin/Debug/netcoreapp3.0/CustomerData.Data.dll
+*.dll
