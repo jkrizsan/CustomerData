@@ -1,0 +1,9 @@
+
+CustomerData/.vs/CustomerData/v16/.suo
+CustomerData/.vs/CustomerData/v16/Server/sqlite3/db.lock
+CustomerData/.vs/CustomerData/v16/Server/sqlite3/storage.ide
+CustomerData/.vs/CustomerData/v16/Server/sqlite3/storage.ide-shm
+CustomerData/.vs/CustomerData/v16/Server/sqlite3/storage.ide-wal
+CustomerData/obj/Debug/netcoreapp3.0/CustomerData.dll
+CustomerData/obj/Debug/netcoreapp3.0/CustomerData.RazorAssemblyInfo.cache
+*.cache
