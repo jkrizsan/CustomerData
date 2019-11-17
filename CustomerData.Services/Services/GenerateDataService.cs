@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CompanyData.Services
 {
@@ -33,50 +34,20 @@ namespace CompanyData.Services
             rnd = new Random();
         }
 
-        public void GenerataCompaniesData(GenerateDataDTO data)
+        public async void GenerataData(GenerateDataDTO data)
         {
             for (int i = 0; i < data.CompanyNumber; i++)
             {
-                var company = new Company();
-                company.Name = GenerateCompanyName();
-                company.NumberOfContacts = rnd.Next(data.MinContactNumber, data.MaxContactNumber);
-                context.Companys.Add(company);
-                context.SaveChanges();
-                for (int j = 0; j < company.NumberOfContacts; j++)
-                {
-                    var contact = new Contact();
-                    contact.FirstName = firstNames[rnd.Next(firstNames.Count)];
-                    contact.MiddleName = rnd.Next(0, 10) > 5 ? rnd.Next(0, 10) > 5 ? firstNames[rnd.Next(firstNames.Count)]
-                                                                                    : lastNames[rnd.Next(lastNames.Count)]
-                                                             : "";
-                    contact.LastName = lastNames[rnd.Next(lastNames.Count)];
-                    contact.NumnerOfOrders = rnd.Next(data.MinOrderNumber, data.MaxOrderNumber);
-                    context.Contacts.Add(contact);
-                    context.SaveChanges();
-                    for (int k = 0; k < contact.NumnerOfOrders; k++)
-                    {
-                        var order = new Order();
-                        order.OrderDate = DateTime.Now.AddDays(-rnd.Next(0,100));
-                        order.OrderPrice = rnd.Next(data.MinOrderPrice, data.MaxOrderPrice);
-                        context.Orders.Add(order);
-                        context.SaveChanges();
-                        contact.Orders.Add(order);
-                        contact.Income += order.OrderPrice;
-                        company.NumberOfOrders++;
-                        company.TotalIncome += order.OrderPrice;
-                        context.SaveChanges();
-                    }
-                    company.Contacts.Add(contact);
-                    context.SaveChanges();
-                }
+                await GenerataCompany(data);
             }
+            //context.SaveChanges();
         }
 
         private string GenerateCompanyName()
         {
-            var numberOfNames = rnd.Next(1,3);
+            var numberOfNames = rnd.Next(1, 3);
             StringBuilder companyName = new StringBuilder();
-            
+
             for (int i = 0; i < numberOfNames; i++)
             {
                 companyName.Append(companyNames[rnd.Next(companyNames.Count)]);
@@ -89,17 +60,61 @@ namespace CompanyData.Services
 
         public void RemoveAllCompanyData()
         {
-            var companies = context.Companys.ToList();
-            context.Companys.RemoveRange(companies);
+            var orders = context.Orders.ToList();
+            context.Orders.RemoveRange(orders);
 
             var conatcts = context.Contacts.ToList();
             context.Contacts.RemoveRange(conatcts);
 
-            var orders = context.Orders.ToList();
-            context.Orders.RemoveRange(orders);
+            var companies = context.Companys.ToList();
+            context.Companys.RemoveRange(companies);
 
             context.SaveChanges();
 
+        }
+
+        public async Task GenerataCompany(GenerateDataDTO data)
+        {
+            var company = new Company();
+            company.Name = GenerateCompanyName();
+            company.NumberOfContacts = rnd.Next(data.MinContactNumber, data.MaxContactNumber);
+            context.Companys.Add(company);
+            for (int j = 0; j < company.NumberOfContacts; j++)
+            {
+                var contact = GenerataContact(company, data);
+                for (int k = 0; k < contact.NumnerOfOrders; k++)
+                {
+                    var order = GenerataOrder(contact, data);
+                    company.NumberOfOrders++;
+                    company.TotalIncome += order.OrderPrice;
+                }
+                company.Contacts.Add(contact);
+            }
+            context.SaveChanges();
+        }
+
+        public Contact GenerataContact(Company comnay, GenerateDataDTO data)
+        {
+            var contact = new Contact();
+            contact.FirstName = firstNames[rnd.Next(firstNames.Count)];
+            contact.MiddleName = rnd.Next(0, 10) > 5 ? rnd.Next(0, 10) > 5 ? firstNames[rnd.Next(firstNames.Count)]
+                                                                            : lastNames[rnd.Next(lastNames.Count)]
+                                                     : "";
+            contact.LastName = lastNames[rnd.Next(lastNames.Count)];
+            contact.NumnerOfOrders = rnd.Next(data.MinOrderNumber, data.MaxOrderNumber);
+            context.Contacts.Add(contact);
+            return contact;
+        }
+
+        public Order GenerataOrder(Contact contact, GenerateDataDTO data)
+        {
+            var order = new Order();
+            order.OrderDate = DateTime.Now.AddDays(-rnd.Next(0, 100));
+            order.OrderPrice = rnd.Next(data.MinOrderPrice, data.MaxOrderPrice);
+            context.Orders.Add(order);
+            contact.Orders.Add(order);
+            contact.Income += order.OrderPrice;
+            return order;
         }
     }
 }

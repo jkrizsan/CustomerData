@@ -63,14 +63,23 @@ namespace CompanyData.Web.Controllers
             return View(generateData);
         }
 
+        
         // POST: GenerateDataService/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, GenerateDataDTO collection)
+        public ActionResult Edit(int id, GenerateDataDTO collection, string button)
         {
             try
             {
-                generateDataService.GenerataCompaniesData(collection);
+                if(button.Equals("Generate Data"))
+                {
+                    generateDataService.GenerataData(collection);
+                }
+                else if(button.Equals("Delete Data"))
+                {
+                    generateDataService.RemoveAllCompanyData();
+                }
+                
                 return RedirectToAction(nameof(Edit));
             }
             catch

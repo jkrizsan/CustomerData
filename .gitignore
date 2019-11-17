@@ -12,3 +12,6 @@ CustomerData.Models/bin/Debug/netcoreapp3.0/CustomerData.Data.dll
 *.ide-shm
 CustomerData/.vs/CompanyData/DesignTimeBuild/.dtbcache
 CustomerData/.vs/CompanyData/v16/.suo
+*.pdb
+CustomerData.Services/bin/Debug/netcoreapp3.0/CompanyData.Services.pdb
+*.ide
