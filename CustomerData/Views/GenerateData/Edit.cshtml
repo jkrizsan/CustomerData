@@ -1,0 +1,95 @@
+﻿@model CompanyData.Data.DTOs.GenerateDataDTO
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Home/_Layout.cshtml";
+}
+
+<h1>Imputs For Data Generation</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CompanyNumber" class="control-label"></label>
+                <input asp-for="CompanyNumber" class="form-control" />
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Minimum Value
+                        </th>
+                        <th>
+                            Maximum  Value
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            Contact Number
+                        </td>
+                        <td>
+                            <input asp-for="MinContactNumber" class="form-control" />
+                        </td>
+                        <td>
+
+                            <input asp-for="MaxContactNumber" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Order Number
+                        </td>
+                        <td>
+                            <input asp-for="MinOrderNumber" class="form-control" />
+                        </td>
+                        <td>
+                            <input asp-for="MaxOrderNumber" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Order Price
+                        </td>
+                        <td>
+
+                            <input asp-for="MinOrderPrice" class="form-control" />
+
+                        </td>
+                        <td>
+                            <input asp-for="MaxOrderPrice" class="form-control" />
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-12">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <input type="submit" value="Draft" class="btn btn-primary" />
+
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+</div>
+
+
+<div>
+
+    <a asp-action="Index">Back to List</a>
+</div>
+

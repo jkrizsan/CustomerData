@@ -6,6 +6,10 @@ namespace CompanyData.Data.Models
 {
    public class Contact
     {
+        public Contact()
+        {
+            Orders = new List<Order>();
+        }
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

@@ -40,6 +40,8 @@ namespace CompanyData.Services
                 var company = new Company();
                 company.Name = GenerateCompanyName();
                 company.NumberOfContacts = rnd.Next(data.MinContactNumber, data.MaxContactNumber);
+                context.Companys.Add(company);
+                context.SaveChanges();
                 for (int j = 0; j < company.NumberOfContacts; j++)
                 {
                     var contact = new Contact();
@@ -49,20 +51,23 @@ namespace CompanyData.Services
                                                              : "";
                     contact.LastName = lastNames[rnd.Next(lastNames.Count)];
                     contact.NumnerOfOrders = rnd.Next(data.MinOrderNumber, data.MaxOrderNumber);
-                    
+                    context.Contacts.Add(contact);
+                    context.SaveChanges();
                     for (int k = 0; k < contact.NumnerOfOrders; k++)
                     {
                         var order = new Order();
                         order.OrderDate = DateTime.Now.AddDays(-rnd.Next(0,100));
                         order.OrderPrice = rnd.Next(data.MinOrderPrice, data.MaxOrderPrice);
-                        
+                        context.Orders.Add(order);
+                        context.SaveChanges();
                         contact.Orders.Add(order);
                         contact.Income += order.OrderPrice;
                         company.NumberOfOrders++;
                         company.TotalIncome += order.OrderPrice;
+                        context.SaveChanges();
                     }
                     company.Contacts.Add(contact);
-                    context.SaveChangesAsync();
+                    context.SaveChanges();
                 }
             }
         }
@@ -75,7 +80,7 @@ namespace CompanyData.Services
             for (int i = 0; i < numberOfNames; i++)
             {
                 companyName.Append(companyNames[rnd.Next(companyNames.Count)]);
-                companyName.Append("");
+                companyName.Append(" ");
             }
             companyName.Append(companyNameEndding[rnd.Next(companyNameEndding.Count)]);
 
@@ -93,7 +98,7 @@ namespace CompanyData.Services
             var orders = context.Orders.ToList();
             context.Orders.RemoveRange(orders);
 
-            context.SaveChangesAsync();
+            context.SaveChanges();
 
         }
     }

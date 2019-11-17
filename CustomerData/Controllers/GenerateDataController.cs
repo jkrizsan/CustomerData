@@ -12,6 +12,7 @@ namespace CompanyData.Web.Controllers
     public class GenerateDataController : Controller
     {
         private IGenerateDataService generateDataService;
+        private GenerateDataDTO generateData;
 
         public GenerateDataController(IGenerateDataService generateDataServic)
         {
@@ -34,7 +35,7 @@ namespace CompanyData.Web.Controllers
         // GET: GenerateDataService/Create
         public ActionResult Create()
         {
-            var generateData = new GenerateDataDTO();
+            generateData = new GenerateDataDTO();
             return View(generateData);
         }
 
@@ -65,13 +66,12 @@ namespace CompanyData.Web.Controllers
         // POST: GenerateDataService/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, GenerateDataDTO collection)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
+                generateDataService.GenerataCompaniesData(collection);
+                return RedirectToAction(nameof(Edit));
             }
             catch
             {
@@ -100,6 +100,19 @@ namespace CompanyData.Web.Controllers
             {
                 return View();
             }
+        }
+        [HttpPost]
+        public ActionResult Save(GenerateDataDTO objSave)
+        {
+
+            ViewBag.Msg = "Details saved successfully.";
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Draft(GenerateDataDTO objDraft)
+        {
+            ViewBag.Msg = "Details saved as draft.";
+            return View();
         }
     }
 }

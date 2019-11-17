@@ -165,6 +165,10 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "KendoUIWeb": {
+              "target": "Package",
+              "version": "[2014.1.318, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.0.0, )"

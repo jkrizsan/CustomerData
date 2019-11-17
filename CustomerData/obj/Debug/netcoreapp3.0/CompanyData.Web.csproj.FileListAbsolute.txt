@@ -126,6 +126,8 @@ D:\AI\CustomerData\CustomerData\CustomerData\bin\Debug\netcoreapp3.0\ru\Microsof
 D:\AI\CustomerData\CustomerData\CustomerData\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\AI\CustomerData\CustomerData\CustomerData\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\AI\CustomerData\CustomerData\CustomerData\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\CompanyData.Web.MvcApplicationPartsAssemblyInfo.cache
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\Company\Index.cshtml.g.cs
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\GenerateData\Index.cshtml.g.cs
+D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\Company\Edit.cshtml.g.cs
+D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\GenerateData\Edit.cshtml.g.cs
+D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\CompanyData.Web.MvcApplicationPartsAssemblyInfo.cache
