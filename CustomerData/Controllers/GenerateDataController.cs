@@ -12,7 +12,7 @@ namespace CompanyData.Web.Controllers
     public class GenerateDataController : Controller
     {
         private IGenerateDataService generateDataService;
-        private GenerateDataDTO generateData;
+        private GenerateDataDto generateData;
 
         public GenerateDataController(IGenerateDataService generateDataServic)
         {
@@ -21,21 +21,21 @@ namespace CompanyData.Web.Controllers
         // GET: GenerateDataService
         public ActionResult Index()
         {
-            var generateData = new GenerateDataDTO();
+            var generateData = new GenerateDataDto();
             return View(generateData);
         }
 
         // GET: GenerateDataService/Details/5
         public ActionResult Details(int id)
         {
-            var generateData = new GenerateDataDTO();
+            var generateData = new GenerateDataDto();
             return View(generateData);
         }
 
         // GET: GenerateDataService/Create
         public ActionResult Create()
         {
-            generateData = new GenerateDataDTO();
+            generateData = new GenerateDataDto();
             return View(generateData);
         }
 
@@ -59,7 +59,7 @@ namespace CompanyData.Web.Controllers
         // GET: GenerateDataService/Edit/5
         public ActionResult Edit(int id)
         {
-            var generateData = new GenerateDataDTO();
+            var generateData = new GenerateDataDto();
             return View(generateData);
         }
 
@@ -67,17 +67,17 @@ namespace CompanyData.Web.Controllers
         // POST: GenerateDataService/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, GenerateDataDTO collection, string button)
+        public async Task<ActionResult> Edit(int id, GenerateDataDto collection, string button)
         {
             try
             {
                 if(button.Equals("Generate Data"))
                 {
-                    generateDataService.GenerataData(collection);
+                    await generateDataService.GenerataData(collection);
                 }
                 else if(button.Equals("Delete Data"))
                 {
-                    generateDataService.RemoveAllCompanyData();
+                    await generateDataService.RemoveAllCompanyData();
                 }
                 
                 return RedirectToAction(nameof(Edit));
@@ -111,14 +111,14 @@ namespace CompanyData.Web.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Save(GenerateDataDTO objSave)
+        public ActionResult Save(GenerateDataDto objSave)
         {
 
             ViewBag.Msg = "Details saved successfully.";
             return View();
         }
         [HttpPost]
-        public ActionResult Draft(GenerateDataDTO objDraft)
+        public ActionResult Draft(GenerateDataDto objDraft)
         {
             ViewBag.Msg = "Details saved as draft.";
             return View();

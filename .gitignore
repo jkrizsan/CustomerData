@@ -15,3 +15,10 @@ CustomerData/.vs/CompanyData/v16/.suo
 *.pdb
 CustomerData.Services/bin/Debug/netcoreapp3.0/CompanyData.Services.pdb
 *.ide
+CustomerData/.vs/CompanyData/v16/.suo
+CustomerData/.vs/CompanyData/DesignTimeBuild/.dtbcache
+*.ide
+*.ide-wal
+*.user
+CustomerData.Models/obj/Release/netcoreapp3.0/CompanyData.Data.csproj.FileListAbsolute.txt
+*.ide-wal

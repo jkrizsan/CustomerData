@@ -34,13 +34,13 @@ namespace CompanyData.Services
             rnd = new Random();
         }
 
-        public async void GenerataData(GenerateDataDTO data)
+        public async Task GenerataData(GenerateDataDto data)
         {
+
             for (int i = 0; i < data.CompanyNumber; i++)
             {
-                await GenerataCompany(data);
+                GenerataCompanies(data);
             }
-            //context.SaveChanges();
         }
 
         private string GenerateCompanyName()
@@ -58,7 +58,7 @@ namespace CompanyData.Services
             return companyName.ToString();
         }
 
-        public void RemoveAllCompanyData()
+        public async Task RemoveAllCompanyData()
         {
             var orders = context.Orders.ToList();
             context.Orders.RemoveRange(orders);
@@ -73,7 +73,7 @@ namespace CompanyData.Services
 
         }
 
-        public async Task GenerataCompany(GenerateDataDTO data)
+        public void GenerataCompanies(GenerateDataDto data)
         {
             var company = new Company();
             company.Name = GenerateCompanyName();
@@ -93,7 +93,7 @@ namespace CompanyData.Services
             context.SaveChanges();
         }
 
-        public Contact GenerataContact(Company comnay, GenerateDataDTO data)
+        public Contact GenerataContact(Company comnay, GenerateDataDto data)
         {
             var contact = new Contact();
             contact.FirstName = firstNames[rnd.Next(firstNames.Count)];
@@ -106,7 +106,7 @@ namespace CompanyData.Services
             return contact;
         }
 
-        public Order GenerataOrder(Contact contact, GenerateDataDTO data)
+        public Order GenerataOrder(Contact contact, GenerateDataDto data)
         {
             var order = new Order();
             order.OrderDate = DateTime.Now.AddDays(-rnd.Next(0, 100));

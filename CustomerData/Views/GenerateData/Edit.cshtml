@@ -1,4 +1,4 @@
-﻿@model CompanyData.Data.DTOs.GenerateDataDTO
+﻿@model CompanyData.Data.DTOs.GenerateDataDto
 
 @{
     ViewData["Title"] = "Edit";
@@ -20,7 +20,7 @@
                 <thead>
                     <tr>
                         <th>
-                            Name
+                            Parameter Name
                         </th>
                         <th>
                             Minimum Value
@@ -71,22 +71,13 @@
 
                 </tbody>
             </table>
-
-
             
             <input type="submit" value="Generate Data" class="btn btn-primary" name='button' />
             <input type="submit" value="Delete Data" class="btn btn-primary" name='button' />
 
-               
-
         </form>
        
-           
     </div>
 </div>
 
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 

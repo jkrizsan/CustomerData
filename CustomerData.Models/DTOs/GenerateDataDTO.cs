@@ -2,7 +2,7 @@
 
 namespace CompanyData.Data.DTOs
 {
-    public class GenerateDataDTO
+    public class GenerateDataDto
     {
         [Required]
         [Display(Name ="Number of Company")]
