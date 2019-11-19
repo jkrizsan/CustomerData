@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CompanyData.Data.Models.Company>
+@using System.Web.Helpers;
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Home/_Layout.cshtml";
+}
+
+
+<h1>Edit</h1>
+<div><b>Table Format Data Displaying Using WebGrid</b><br /></div>
+@{ var grid = new WebGrid(Model, canPage: true);}
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>Name </th>
+        <th>NumberOfContacts</th>
+        <th>NumberOfOrders</th>
+        <th>TotalIncome</th>
+
+    </tr>
+    @foreach (var d in Model)
+    {
+        <tr>
+            @*<td>@d.Id</td>*@
+            <td>@d.Name</td>
+            <td>@d.NumberOfContacts</td>
+            <td>@d.NumberOfOrders</td>
+            <td>@d.TotalIncome</td>
+
+        </tr>
+
+    }
+</table>  

@@ -165,9 +165,9 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
-            "KendoUIWeb": {
+            "AD.System.Web.Helpers.dll": {
               "target": "Package",
-              "version": "[2014.1.318, )"
+              "version": "[2.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -186,6 +186,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "System.Linq.Dynamic": {
+              "target": "Package",
+              "version": "[1.0.7, )"
             }
           },
           "imports": [

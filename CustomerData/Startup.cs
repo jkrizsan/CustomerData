@@ -29,6 +29,7 @@ namespace CompanyData
         {
             services.AddControllersWithViews();
             services.AddScoped<IGenerateDataService, GenerateDataService>();
+            services.AddScoped<IDataMapService, DataMapService>();
             services.AddDbContext<CompanyDataDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Connection")));
         }

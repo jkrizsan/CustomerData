@@ -2,37 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CompanyData.Data.Models;
+using CompanyData.Services.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Web.Helpers;
 
 namespace CompanyData.Web.Controllers
 {
-    public class CompanyController : Controller
+
+    public class DataMapController : Controller
     {
-        // GET: Company
+        IDataMapService dataMapService;
+
+        public DataMapController(IDataMapService dataMapService)
+        {
+            this.dataMapService = dataMapService;
+        }
+
+        // GET: DataMap
         public ActionResult Index()
         {
-            var company = new Company();
-            return View(company);
+            return View();
         }
 
-        // GET: Company/Details/5
+        // GET: DataMap/Details/5
         public ActionResult Details(int id)
         {
-            var company = new Company();
-            return View(company);
+            return View();
         }
 
-        // GET: Company/Create
+        // GET: DataMap/Create
         public ActionResult Create()
         {
-            var company = new Company();
-            return View(company);
+            return View();
         }
 
-        // POST: Company/Create
+        // POST: DataMap/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -49,14 +54,14 @@ namespace CompanyData.Web.Controllers
             }
         }
 
-        // GET: Company/Edit/5
+        // GET: DataMap/Edit/5
         public ActionResult Edit(int id)
         {
-            var company = new Company();
-            return View(company);
+            var data = dataMapService.GetAllCompanyData().ToList();
+            return View(data);
         }
 
-        // POST: Company/Edit/5
+        // POST: DataMap/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -73,13 +78,13 @@ namespace CompanyData.Web.Controllers
             }
         }
 
-        // GET: Company/Delete/5
+        // GET: DataMap/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Company/Delete/5
+        // POST: DataMap/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
