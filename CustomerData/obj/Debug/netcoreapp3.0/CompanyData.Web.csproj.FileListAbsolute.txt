@@ -130,3 +130,12 @@ D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\Company\Edit.cshtml.g.cs
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\GenerateData\Edit.cshtml.g.cs
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\CompanyData.Web.MvcApplicationPartsAssemblyInfo.cache
+D:\AI\CustomerData\CustomerData\CustomerData\bin\Debug\netcoreapp3.0\System.Linq.Dynamic.dll
+D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\DataMap\Edit.cshtml.g.cs
+D:\AI\CustomerData\CustomerData\CustomerData\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\AI\CustomerData\CustomerData\CustomerData\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+D:\AI\CustomerData\CustomerData\CustomerData\bin\Debug\netcoreapp3.0\Microsoft.DotNet.PlatformAbstractions.dll
+D:\AI\CustomerData\CustomerData\CustomerData\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyModel.dll
+D:\AI\CustomerData\CustomerData\CustomerData\bin\Debug\netcoreapp3.0\Newtonsoft.Json.Bson.dll
+D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\CompanyData.Web.MvcApplicationPartsAssemblyInfo.cs
+D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\DataMap\Index.cshtml.g.cs

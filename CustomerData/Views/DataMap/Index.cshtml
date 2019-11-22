@@ -1,0 +1,62 @@
+﻿
+
+@model CompanyData.Services.IndexCompany
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Home/_Layout.cshtml";
+}
+
+<script>
+    $(document).ready(function() {
+    $('#CompanyTable').DataTable( {
+        "pagingType": "Id"
+    } );
+} );
+</script>
+
+@*<style>
+
+    table, th, td {
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 5px;
+        text-align: left;
+    }
+</style>*@
+<div id="branchIndex">
+    <table id="CompanyTable" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Contact Name</th>
+                <th>Contacts Number</th>
+                <th>Order Number</th>
+                <th>Total Incom</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var company in Model.Companys)
+            {
+                <tr>
+                    <td class="strongTd"><a asp-controller="Company" asp-action="Edit" asp-route-id="@company.Id">@company.Name</a></td>
+                    <td>&nbsp;</td>
+                    <td>@company.NumberOfContacts</td>
+                    <td>@company.NumberOfOrders</td>
+                    <td>@company.TotalIncome</td>
+                </tr>
+                @foreach (var contact in company.Contacts)
+                {
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>@contact.FirstName @contact.LastName.</td>
+                        <td>@contact.NumnerOfOrders</td>
+                        <td>@contact.Income</td>
+                    </tr>
+                }
+            }
+                </tbody>
+        </table>
+</div>

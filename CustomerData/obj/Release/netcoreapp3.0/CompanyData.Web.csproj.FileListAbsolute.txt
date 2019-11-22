@@ -108,6 +108,7 @@ D:\AI\CustomerData\CustomerData\CustomerData\bin\Release\netcoreapp3.0\CompanyDa
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Release\netcoreapp3.0\CompanyData.Web.csprojAssemblyReference.cache
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Release\netcoreapp3.0\staticwebassets\CompanyData.Web.StaticWebAssets.Manifest.cache
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Release\netcoreapp3.0\staticwebassets\CompanyData.Web.StaticWebAssets.xml
+D:\AI\CustomerData\CustomerData\CustomerData\obj\Release\netcoreapp3.0\CompanyData.Web.MvcApplicationPartsAssemblyInfo.cache
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Release\netcoreapp3.0\CompanyData.Web.RazorAssemblyInfo.cache
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Release\netcoreapp3.0\CompanyData.Web.RazorAssemblyInfo.cs
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Release\netcoreapp3.0\CompanyData.Web.AssemblyInfoInputs.cache
@@ -131,5 +132,3 @@ D:\AI\CustomerData\CustomerData\CustomerData\obj\Release\netcoreapp3.0\CompanyDa
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Release\netcoreapp3.0\CompanyData.Web.csproj.CopyComplete
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Release\netcoreapp3.0\CompanyData.Web.dll
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Release\netcoreapp3.0\CompanyData.Web.pdb
-D:\AI\CustomerData\CustomerData\CustomerData\bin\Release\netcoreapp3.0\System.Web.Helpers.dll
-D:\AI\CustomerData\CustomerData\CustomerData\obj\Release\netcoreapp3.0\CompanyData.Web.MvcApplicationPartsAssemblyInfo.cache

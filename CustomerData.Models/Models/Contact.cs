@@ -17,5 +17,6 @@ namespace CompanyData.Data.Models
         public List<Order> Orders { get; set; }
         public int NumnerOfOrders { get; set; }
         public double Income { get; set; }
+        public int CompanyId { get; set; }
     }
 }

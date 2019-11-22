@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CompanyData.Data.Models;
+using CompanyData.Services;
 using CompanyData.Services.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Web.Helpers;
 
 namespace CompanyData.Web.Controllers
 {
@@ -13,16 +14,25 @@ namespace CompanyData.Web.Controllers
     public class DataMapController : Controller
     {
         IDataMapService dataMapService;
+        IIndexCompany indexCompany;
 
-        public DataMapController(IDataMapService dataMapService)
+        public DataMapController(IDataMapService dataMapService, IIndexCompany indexCompany)
         {
             this.dataMapService = dataMapService;
+            this.indexCompany = indexCompany;
         }
 
         // GET: DataMap
         public ActionResult Index()
         {
-            return View();
+            indexCompany.Companys = dataMapService.GetAllCompanyData().ToList();
+            return View(indexCompany);
+        }
+
+        public ActionResult Edit()
+        {
+            indexCompany.Companys = dataMapService.GetAllCompanyData().ToList();
+            return View(indexCompany);
         }
 
         // GET: DataMap/Details/5
@@ -57,8 +67,9 @@ namespace CompanyData.Web.Controllers
         // GET: DataMap/Edit/5
         public ActionResult Edit(int id)
         {
-            var data = dataMapService.GetAllCompanyData().ToList();
-            return View(data);
+             //indexCompany.OnGetAsync();
+            indexCompany.Companys = dataMapService.GetAllCompanyData().ToList();
+            return View(indexCompany);
         }
 
         // POST: DataMap/Edit/5

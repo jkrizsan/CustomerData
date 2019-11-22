@@ -24,7 +24,6 @@
     ".NETCoreApp,Version=v3.0": {
       "CompanyData.Web/1.0.0": {
         "dependencies": {
-          "AD.System.Web.Helpers.dll": "2.0.0",
           "CompanyData.Data": "1.0.0",
           "CompanyData.Services": "1.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.0.0",
@@ -320,17 +319,6 @@
         },
         "compile": {
           "CompanyData.Web.dll": {}
-        }
-      },
-      "AD.System.Web.Helpers.dll/2.0.0": {
-        "runtime": {
-          "lib/net20/System.Web.Helpers.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.20710.0"
-          }
-        },
-        "compile": {
-          "lib/net20/System.Web.Helpers.dll": {}
         }
       },
       "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
@@ -3750,13 +3738,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "AD.System.Web.Helpers.dll/2.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-6vafWHjNA+5CCzJf3DIVqtPOQKzfP63SrVJTnx3mVGke6CNCHyvhWnmfcZLJLIIqVkwWNhjNZE1ynPAvKVW1hA==",
-      "path": "ad.system.web.helpers.dll/2.0.0",
-      "hashPath": "ad.system.web.helpers.dll.2.0.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
       "type": "package",

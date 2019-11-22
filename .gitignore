@@ -22,3 +22,7 @@ CustomerData/.vs/CompanyData/DesignTimeBuild/.dtbcache
 *.user
 CustomerData.Models/obj/Release/netcoreapp3.0/CompanyData.Data.csproj.FileListAbsolute.txt
 *.ide-wal
+CustomerData/.vs/CompanyData/DesignTimeBuild/.dtbcache
+CustomerData/.vs/CompanyData/DesignTimeBuild/.dtbcache
+CustomerData/.vs/CompanyData/v16/.suo
+CustomerData/.vs/CompanyData/v16/Server/sqlite3/storage.ide

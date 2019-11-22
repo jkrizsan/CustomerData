@@ -2,6 +2,7 @@
 using CompanyData.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CompanyData.Services.Services
@@ -19,7 +20,14 @@ namespace CompanyData.Services.Services
 
         public IEnumerable<Company> GetAllCompanyData()
         {
-            return context.Companys;
+            var companys = context.Companys.ToList();
+            foreach (var item in companys)
+            {
+                var contacts = context.Contacts.Where( c => c.CompanyId.Equals(item.Id) );
+                item.Contacts = contacts.ToList();
+            }
+
+            return companys;
         }
         
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CompanyData.Data.Models;
+using CompanyData.Services.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,13 @@ namespace CompanyData.Web.Controllers
 {
     public class CompanyController : Controller
     {
+        private ICompanyService companyService;
+
+        public CompanyController(ICompanyService companyService)
+        {
+            this.companyService = companyService;
+        }
+
         // GET: Company
         public ActionResult Index()
         {
@@ -52,20 +60,20 @@ namespace CompanyData.Web.Controllers
         // GET: Company/Edit/5
         public ActionResult Edit(int id)
         {
-            var company = new Company();
+            var company = companyService.GetCompanyById(id);
             return View(company);
         }
 
         // POST: Company/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Company company)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
+                companyService.SaveCompany(company);
+                return RedirectToAction("~/DataMap/Index");
             }
             catch
             {
