@@ -124,6 +124,7 @@ D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\CompanyData
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\CompanyData.Web.RazorCoreGenerate.cache
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\Company\Edit.cshtml.g.cs
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\Company\Index.cshtml.g.cs
+D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\Contact\Edit.cshtml.g.cs
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\DataMap\Index.cshtml.g.cs
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\GenerateData\Edit.cshtml.g.cs
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\Home\Index.cshtml.g.cs
@@ -138,4 +139,3 @@ D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\CompanyData
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\CompanyData.Web.csproj.CopyComplete
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\CompanyData.Web.dll
 D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\CompanyData.Web.pdb
-D:\AI\CustomerData\CustomerData\CustomerData\obj\Debug\netcoreapp3.0\Razor\Views\Contact\Edit.cshtml.g.cs
