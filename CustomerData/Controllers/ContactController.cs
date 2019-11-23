@@ -7,40 +7,34 @@ using CompanyData.Services.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace CompanyData.Web.Controllers
 {
-    public class CompanyController : Controller
+    public class ContactController : Controller
     {
-        private ICompanyService companyService;
-
-        public CompanyController(ICompanyService companyService)
+        private IContactService contactService;
+        public ContactController(IContactService contactService)
         {
-            this.companyService = companyService;
+            this.contactService = contactService;
         }
-
-        // GET: Company
+        // GET: Contact
         public ActionResult Index()
         {
-            var company = new Company();
-            return View(company);
+            return View();
         }
 
-        // GET: Company/Details/5
+        // GET: Contact/Details/5
         public ActionResult Details(int id)
         {
-            var company = new Company();
-            return View(company);
+            return View();
         }
 
-        // GET: Company/Create
+        // GET: Contact/Create
         public ActionResult Create()
         {
-            var company = new Company();
-            return View(company);
+            return View();
         }
 
-        // POST: Company/Create
+        // POST: Contact/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -57,37 +51,36 @@ namespace CompanyData.Web.Controllers
             }
         }
 
-        // GET: Company/Edit/5
+        // GET: Contact/Edit/5
         public ActionResult Edit(int id)
         {
-            var company = companyService.GetCompanyById(id);
-            return View(company);
+            var contact = contactService.GetContactById(id);
+            return View(contact);
         }
 
-        // POST: Company/Edit/5
+        // POST: Contact/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Company company)
+        public ActionResult Edit(int id, Contact contact)
         {
             try
             {
-                // TODO: Add update logic here
-                companyService.SaveCompany(company);
+                contactService.SaveContact(contact);
                 return RedirectToAction();
             }
-            catch
+            catch(Exception e)
             {
                 return View();
             }
         }
 
-        // GET: Company/Delete/5
+        // GET: Contact/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Company/Delete/5
+        // POST: Contact/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

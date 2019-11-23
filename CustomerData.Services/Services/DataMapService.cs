@@ -11,23 +11,17 @@ namespace CompanyData.Services.Services
     {
 
         CompanyDataDbContext context;
+        ICompanyService companyService;
 
-
-        public DataMapService(CompanyDataDbContext context)
+        public DataMapService(CompanyDataDbContext context, ICompanyService companyService)
         {
             this.context = context;
+            this.companyService = companyService;
         }
 
         public IEnumerable<Company> GetAllCompanyData()
         {
-            var companys = context.Companys.ToList();
-            foreach (var item in companys)
-            {
-                var contacts = context.Contacts.Where( c => c.CompanyId.Equals(item.Id) );
-                item.Contacts = contacts.ToList();
-            }
-
-            return companys;
+            return companyService.GetAllCompanies();
         }
         
     }

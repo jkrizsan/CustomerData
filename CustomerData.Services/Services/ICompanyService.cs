@@ -7,6 +7,8 @@ namespace CompanyData.Services.Services
 {
     public interface ICompanyService
     {
+        IEnumerable<Company> GetAllCompanies();
+        IEnumerable<Contact> GetContactsByCompanyId(int Id);
         Company GetCompanyById(int Id);
         void SaveCompany(Company company);
     }

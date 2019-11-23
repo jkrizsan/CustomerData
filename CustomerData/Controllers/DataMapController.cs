@@ -23,9 +23,21 @@ namespace CompanyData.Web.Controllers
         }
 
         // GET: DataMap
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
             indexCompany.Companys = dataMapService.GetAllCompanyData().ToList();
+            ViewData["Name_Desc"] = String.IsNullOrEmpty(sortOrder) ? "Name_Desc" : "";
+            switch (sortOrder)
+            {
+                case "Name_Desc":
+                    indexCompany.Companys = indexCompany.Companys.OrderByDescending(s => s.Name).ToList();
+                    break;
+               
+                default:
+                    indexCompany.Companys = indexCompany.Companys.OrderBy(s => s.Name).ToList();
+                    break;
+            }
+
             return View(indexCompany);
         }
 

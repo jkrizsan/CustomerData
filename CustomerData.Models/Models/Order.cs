@@ -9,5 +9,6 @@ namespace CompanyData.Data.Models
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }
         public double OrderPrice { get; set; }
+        public int ContactId { get; set; }
     }
 }

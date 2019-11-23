@@ -28,12 +28,17 @@ namespace CompanyData
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            
             services.AddScoped<IGenerateDataService, GenerateDataService>();
             services.AddScoped<IDataMapService, DataMapService>();
             services.AddScoped<IIndexCompany, IndexCompany>();
             services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IContactService, ContactService>();
             services.AddDbContext<CompanyDataDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Connection")));
+
+            services.AddMvc();
+            //services.AddPaging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,7 +65,7 @@ namespace CompanyData
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=GenerateData}/{action=Edit}/{id?}");
             });
         }
     }
