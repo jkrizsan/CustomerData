@@ -70,7 +70,6 @@ namespace CompanyData.Services
             context.Companys.RemoveRange(companies);
 
             context.SaveChanges();
-
         }
 
         public void GenerataCompanies(GenerateDataDto data)

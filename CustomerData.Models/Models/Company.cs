@@ -50,7 +50,6 @@ namespace CompanyData.Data.Models
                     TotalIncome = contact.Income;
                 }
             }
-
         }
         public void DeleteOrder(Order order)
         {

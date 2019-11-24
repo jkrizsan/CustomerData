@@ -12,7 +12,5 @@ namespace CompanyData.Data
         public DbSet<Company> Companys { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Order> Orders { get; set; }
-
-
     }
 }

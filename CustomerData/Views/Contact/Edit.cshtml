@@ -1,4 +1,5 @@
-﻿@model CompanyData.Data.Models.Contact
+﻿@using CompanyData.Data.Parameters;
+@model CompanyData.Data.Models.Contact
 
 @{
     ViewData["Title"] = "Edit";
@@ -8,7 +9,7 @@
 <h1>Edit Contact</h1>
 
 <div>
-    <a asp-action="Create" asp-controller="Order" asp-route-contactId="@Model.Id">Create New Order</a>
+    <a asp-action="@ActionNames.Create" asp-controller="@ControllerNames.Order" asp-route-contactId="@Model.Id">Create New Order</a>
 </div>
 
 <hr />
@@ -73,11 +74,11 @@
                         @foreach (var order in Model.Orders)
                         {
                             <tr>
-                                <td class="Td"><a asp-controller="Order" asp-action="Edit" asp-route-id="@order.Id">@order.OrderDate</a></td>
-                                <td class="Td"><a asp-controller="Order" asp-action="Edit" asp-route-id="@order.Id">@order.OrderPrice</a></td>
+                                <td class="Td"><a asp-controller="@ControllerNames.Order" asp-action="@ActionNames.Edit" asp-route-id="@order.Id">@order.OrderDate</a></td>
+                                <td class="Td"><a asp-controller="@ControllerNames.Order" asp-action="@ActionNames.Edit" asp-route-id="@order.Id">@order.OrderPrice</a></td>
 
                                 <td>
-                                    <a asp-action="Delete" asp-controller="Order" asp-route-id="@order.Id">Delete</a>
+                                    <a asp-action="Delete" asp-controller="@ControllerNames.Order" asp-route-id="@order.Id">Delete</a>
                                 </td>
                             </tr>
 
@@ -95,6 +96,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="@ControllerNames.DataMap" asp-action="@ActionNames.Index">Back to List</a>
 </div>
 

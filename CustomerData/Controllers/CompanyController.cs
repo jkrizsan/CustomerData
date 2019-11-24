@@ -23,15 +23,13 @@ namespace CompanyData.Web.Controllers
         // GET: Company
         public ActionResult Index()
         {
-            var company = new Company();
-            return View(company);
+            return View(new Company());
         }
 
         // GET: Company/Details/5
         public ActionResult Details(int id)
         {
-            var company = new Company();
-            return View(company);
+            return View(new Company());
         }
 
         // GET: Company/Create

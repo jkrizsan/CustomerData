@@ -114,81 +114,12 @@ namespace CompanyData.Web.Controllers
             return View(Companies);
         }
 
-        // GET: DataMap/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: DataMap/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: DataMap/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         // GET: DataMap/Edit/5
         public ActionResult Edit(int id)
         {
              //indexCompany.OnGetAsync();
             Companies = dataMapService.GetAllCompanyData().ToList();
             return View(Companies);
-        }
-
-        // POST: DataMap/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: DataMap/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: DataMap/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
 
     }

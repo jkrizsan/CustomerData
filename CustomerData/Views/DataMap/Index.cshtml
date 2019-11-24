@@ -1,4 +1,5 @@
-﻿@using CompanyData.Web
+﻿@using CompanyData.Data.Parameters;
+@using CompanyData.Web
 @model PaginatedList<CompanyData.Data.Models.Company>
 
 @{
@@ -6,9 +7,9 @@
     Layout = "~/Views/Home/_Layout.cshtml";
 }
 
-    <div>
-        <a asp-action="Create" asp-controller="Company">Create New Company</a>
-    </div>
+<div>
+    <a asp-action="@ActionNames.Create" asp-controller="@ControllerNames.Company">Create New Company</a>
+</div>
 
 <div id="DataMap" style="width:1020px; margin: 0 auto; border:1px solid blue;">
     <style>
@@ -54,25 +55,25 @@
             @foreach (var company in Model)
             {
                 <tr>
-                    <td class="strongTd"><a asp-controller="Company" asp-action="Edit" asp-route-id="@company.Id">@company.Name</a></td>
+                    <td class="strongTd"><a asp-controller="@ControllerNames.Company" asp-action="@ActionNames.Edit" asp-route-id="@company.Id">@company.Name</a></td>
                     <td>&nbsp;</td>
                     <td>@company.NumberOfContacts</td>
                     <td>Total: @company.NumberOfOrders</td>
                     <td>Total: @company.TotalIncome</td>
                     <td>
-                        <a asp-action="Delete" asp-controller="Company" asp-route-id="@company.Id">Delete</a>
+                        <a asp-action="@ActionNames.Delete" asp-controller="@ControllerNames.Company" asp-route-id="@company.Id">Delete</a>
                     </td>
                 </tr>
                 @foreach (var contact in company.Contacts)
                 {
                     <tr>
                         <td>&nbsp;</td>
-                        <td class="strongTd"><a asp-controller="Contact" asp-action="Edit" asp-route-id="@contact.Id">@contact.FirstName @contact.LastName</a></td>
+                        <td class="strongTd"><a asp-controller="@ControllerNames.Contact" asp-action="@ActionNames.Edit" asp-route-id="@contact.Id">@contact.FirstName @contact.LastName</a></td>
                         <td>&nbsp;</td>
                         <td>@contact.NumnerOfOrders</td>
                         <td>@contact.Income</td>
                         <td>
-                            <a asp-action="Delete" asp-controller="Contact" asp-route-id="@contact.Id">Delete</a>
+                            <a asp-action="@ActionNames.Delete" asp-controller="@ControllerNames.Contact" asp-route-id="@contact.Id">Delete</a>
                         </td>
                     </tr>
                 }
@@ -85,14 +86,14 @@
         var nextDisabled = !Model.HasNextPage ? "disabled" : "";
     }
 
-    <a asp-action="Index"
+    <a asp-action="@ActionNames.Index"
        asp-route-sortOrder="@ViewData["CurrentSort"]"
        asp-route-pageNumber="@(Model.PageIndex - 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @prevDisabled">
         Previous
     </a>
-    <a asp-action="Index"
+    <a asp-action="@ActionNames.Index"
        asp-route-sortOrder="@ViewData["CurrentSort"]"
        asp-route-pageNumber="@(Model.PageIndex + 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"

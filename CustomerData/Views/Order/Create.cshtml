@@ -1,13 +1,13 @@
-﻿@model CompanyData.Data.Models.Order
+﻿@using CompanyData.Data.Parameters;
+@model CompanyData.Data.Models.Order
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Home/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+ <h1>Create Order</h1>
 
-<h4>Order</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -36,6 +36,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="@ControllerNames.DataMap" asp-action="@ActionNames.Index">Back to List</a>
 </div>
 
