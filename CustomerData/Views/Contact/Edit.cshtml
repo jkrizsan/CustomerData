@@ -5,15 +5,17 @@
     Layout = "~/Views/Home/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<h1>Edit Contact</h1>
 
-<h4>Contact</h4>
+<div>
+    <a asp-action="Create" asp-controller="Order" asp-route-contactId="@Model.Id">Create New Order</a>
+</div>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" />
@@ -29,19 +31,64 @@
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
+            <dt class="col-sm-10">
+                @Html.DisplayNameFor(model => model.NumnerOfOrders):
+                @Html.DisplayFor(model => model.NumnerOfOrders)
+            </dt>
+            <dt class="col-sm-10">
+                @Html.DisplayNameFor(model => model.Income):
+                @Html.DisplayFor(model => model.Income)
+            </dt>
             <div class="form-group">
-                <label asp-for="NumnerOfOrders" class="control-label"></label>
-                <input asp-for="NumnerOfOrders" class="form-control" />
-                <span asp-validation-for="NumnerOfOrders" class="text-danger"></span>
+                <label asp-for="CompanyId" class="control-label"></label>
+                <input asp-for="CompanyId" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Income" class="control-label"></label>
-                <input asp-for="Income" class="form-control" />
-                <span asp-validation-for="Income" class="text-danger"></span>
+
+            <div id="Order" style="width:1020px; margin: 0 auto;border:1px solid red;">
+                <style>
+
+                    table, th, td {
+                        border-collapse: collapse;
+                    }
+
+                    th, td {
+                        padding: 5px;
+                        text-align: center;
+                    }
+                </style>
+
+                <table id="ContactDataTable" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Orders[0].OrderDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Orders[0].OrderPrice)
+                            </th>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var order in Model.Orders)
+                        {
+                            <tr>
+                                <td class="Td"><a asp-controller="Order" asp-action="Edit" asp-route-id="@order.Id">@order.OrderDate</a></td>
+                                <td class="Td"><a asp-controller="Order" asp-action="Edit" asp-route-id="@order.Id">@order.OrderPrice</a></td>
+
+                                <td>
+                                    <a asp-action="Delete" asp-controller="Order" asp-route-id="@order.Id">Delete</a>
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
             </div>
-            
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>

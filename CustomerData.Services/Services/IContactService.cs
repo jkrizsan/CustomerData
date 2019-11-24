@@ -10,5 +10,8 @@ namespace CompanyData.Services.Services
         Contact GetContactById(int Id);
         IEnumerable<Order> GetOrdersByContactId(int Id);
         void SaveContact(Contact contact);
+        void DeleteContact(int id);
+        void DeleteOrders(Contact contact);
+        int Add(Contact conatct);
     }
 }

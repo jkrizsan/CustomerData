@@ -10,14 +10,35 @@ namespace CompanyData.Services.Services
     public class CompanyService : ICompanyService
     {
         CompanyDataDbContext context;
+        IContactService contactService;
+        IOrderService orderService;
 
-        public CompanyService()
-        {
-        }
-
-        public CompanyService(CompanyDataDbContext context)
+        public CompanyService(CompanyDataDbContext context,
+                             IContactService contactService,
+                             IOrderService orderService)
         {
             this.context = context;
+            this.contactService = contactService;
+            this.orderService = orderService;
+        }
+
+        public int Add(Company company)
+        {
+            context.Companys.Add(company);
+            context.SaveChanges();
+            return company.Id;
+        }
+
+        public void DeleteCompany(int id)
+        {
+            var company = GetCompanyById(id);
+            foreach (var item in company.Contacts)
+            {
+                contactService.DeleteOrders(item);
+            }
+            context.Contacts.RemoveRange(company.Contacts);
+            context.Companys.Remove(company);
+            context.SaveChanges();
         }
 
         public IEnumerable<Company> GetAllCompanies()
@@ -34,22 +55,27 @@ namespace CompanyData.Services.Services
         {
             var company = context.Companys.Where(c => c.Id.Equals(Id)).SingleOrDefault();
             company.Contacts = GetContactsByCompanyId(company.Id).ToList();
+            foreach (var contact in company.Contacts)
+            {
+                contact.Orders = orderService.GetOrdersByContactId(contact.Id).ToList();
+            }
             return company;
         }
 
         public IEnumerable<Contact> GetContactsByCompanyId(int Id)
         {
-            return context.Contacts.Where(c => c.CompanyId.Equals(Id));
+            var contacts = context.Contacts.Where(c => c.CompanyId.Equals(Id));
+            foreach (var item in contacts)
+            {
+                item.Orders = contactService.GetOrdersByContactId(item.Id).ToList();
+            }
+            return contacts;
         }
 
         public void SaveCompany(Company company)
         {
-            var oldCompany = context.Companys.Where(c => c.Id.Equals(company.Id)).SingleOrDefault();
-            oldCompany.Id = company.Id;
+            var oldCompany = GetCompanyById(company.Id);
             oldCompany.Name = company.Name;
-            oldCompany.NumberOfContacts = company.NumberOfContacts;
-            oldCompany.NumberOfOrders = company.NumberOfOrders;
-            oldCompany.TotalIncome = company.TotalIncome;
             context.SaveChanges();
         }
     }

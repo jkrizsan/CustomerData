@@ -11,5 +11,7 @@ namespace CompanyData.Services.Services
         IEnumerable<Contact> GetContactsByCompanyId(int Id);
         Company GetCompanyById(int Id);
         void SaveCompany(Company company);
+        void DeleteCompany(int id);
+        int Add(Company company);
     }
 }

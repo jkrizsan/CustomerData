@@ -6,86 +6,97 @@
     Layout = "~/Views/Home/_Layout.cshtml";
 }
 
-    <div id="DataMap" style="width:1020px; margin: 0 auto; border:1px solid blue;">
-        <style>
+    <div>
+        <a asp-action="Create" asp-controller="Company">Create New Company</a>
+    </div>
 
-            table, th, td {
-                border-collapse: collapse;
-            }
+<div id="DataMap" style="width:1020px; margin: 0 auto; border:1px solid blue;">
+    <style>
 
-            th, td {
-                padding: 5px;
-                text-align: center;
-            }
-        </style>
-        <form asp-action="Index" method="get">
-            <div class="form-actions no-color">
-                <p>
-                    Find Company by Name: <input type="text" name="SearchString" value="@ViewBag.CurrentFilter" />
-                    <input type="submit" value="Search" class="btn btn-default" />
-                </p>
-            </div>
-        </form>
-        <table id="CompanyDataTable" class="display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameParam, currentFilter = ViewBag.CurrentFilter })
-                    </th>
-                    <th>Contact Name</th>
-                    <th>
-                        @Html.ActionLink("Number of Contacts", "Index", new { sortOrder = ViewBag.NumberOfContactsParam, currentFilter = ViewBag.CurrentFilter })
-                    </th>
-                    <th>
-                        @Html.ActionLink("Number of Orders", "Index", new { sortOrder = ViewBag.NumberOfOrdersParam, currentFilter = ViewBag.CurrentFilter })
-                    </th>
-                    <th>
-                        @Html.ActionLink("Total Income", "Index", new { sortOrder = ViewBag.IncomeParam, currentFilter = ViewBag.CurrentFilter })
-                    </th>
-
-            </thead>
-            <tbody>
-               
-                    @foreach(var company in Model)
-                    {
-                        <tr>
-                            <td class="strongTd"><a asp-controller="Company" asp-action="Edit" asp-route-id="@company.Id">@company.Name</a></td>
-                            <td>&nbsp;</td>
-                            <td>@company.NumberOfContacts</td>
-                            <td>Total: @company.NumberOfOrders</td>
-                            <td>Total: @company.TotalIncome</td>
-                        </tr>
-                        @foreach (var contact in company.Contacts)
-                        {
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td class="strongTd"><a asp-controller="Contact" asp-action="Edit" asp-route-id="@contact.Id">@contact.FirstName @contact.LastName</a></td>
-                                <td>&nbsp;</td>
-                                <td>@contact.NumnerOfOrders</td>
-                                <td>@contact.Income</td>
-                            </tr>
-                        }
-                    }
-                
-            </tbody>
-        </table>
-        @{
-            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        table, th, td {
+            border-collapse: collapse;
         }
 
-        <a asp-action="Index"
-           asp-route-sortOrder="@ViewData["CurrentSort"]"
-           asp-route-pageNumber="@(Model.PageIndex - 1)"
-           asp-route-currentFilter="@ViewData["CurrentFilter"]"
-           class="btn btn-default @prevDisabled">
-            Previous
-        </a>
-        <a asp-action="Index"
-           asp-route-sortOrder="@ViewData["CurrentSort"]"
-           asp-route-pageNumber="@(Model.PageIndex + 1)"
-           asp-route-currentFilter="@ViewData["CurrentFilter"]"
-           class="btn btn-default @nextDisabled">
-            Next
-        </a>
-    </div>
+        th, td {
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find Company by Name: <input type="text" name="SearchString" value="@ViewBag.CurrentFilter" />
+                <input type="submit" value="Search" class="btn btn-default" />
+            </p>
+        </div>
+    </form>
+
+    <table id="CompanyDataTable" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameParam, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>Contact Name</th>
+                <th>
+                    @Html.ActionLink("Number of Contacts", "Index", new { sortOrder = ViewBag.NumberOfContactsParam, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink("Number of Orders", "Index", new { sortOrder = ViewBag.NumberOfOrdersParam, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink("Total Income", "Index", new { sortOrder = ViewBag.IncomeParam, currentFilter = ViewBag.CurrentFilter })
+                </th>
+
+        </thead>
+        <tbody>
+
+            @foreach (var company in Model)
+            {
+                <tr>
+                    <td class="strongTd"><a asp-controller="Company" asp-action="Edit" asp-route-id="@company.Id">@company.Name</a></td>
+                    <td>&nbsp;</td>
+                    <td>@company.NumberOfContacts</td>
+                    <td>Total: @company.NumberOfOrders</td>
+                    <td>Total: @company.TotalIncome</td>
+                    <td>
+                        <a asp-action="Delete" asp-controller="Company" asp-route-id="@company.Id">Delete</a>
+                    </td>
+                </tr>
+                @foreach (var contact in company.Contacts)
+                {
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="strongTd"><a asp-controller="Contact" asp-action="Edit" asp-route-id="@contact.Id">@contact.FirstName @contact.LastName</a></td>
+                        <td>&nbsp;</td>
+                        <td>@contact.NumnerOfOrders</td>
+                        <td>@contact.Income</td>
+                        <td>
+                            <a asp-action="Delete" asp-controller="Contact" asp-route-id="@contact.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+        Previous
+    </a>
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+        Next
+    </a>
+</div>

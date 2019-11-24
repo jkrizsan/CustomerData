@@ -8,8 +8,8 @@ namespace CompanyData.Web
 {
     public class PaginatedList<T> : List<T>
     {
-        public int PageIndex { get; private set; }
-        public int TotalPages { get; private set; }
+        public int PageIndex { get; }
+        public int TotalPages { get; }
 
         public PaginatedList(List<T> items, int count, int pageIndex, int pageSize)
         {
@@ -35,10 +35,10 @@ namespace CompanyData.Web
             }
         }
 
-        public static async Task<PaginatedList<T>> CreateAsync(IList<T> source, int pageIndex, int pageSize)
+        public static PaginatedList<T> Create(IList<T> source, int pageIndex, int pageSize)
         {
             var count = source.Count();
-            var items =  source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             return new PaginatedList<T>(items, count, pageIndex, pageSize);
         }
     }

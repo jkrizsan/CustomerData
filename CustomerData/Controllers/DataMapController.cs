@@ -15,13 +15,12 @@ namespace CompanyData.Web.Controllers
     public class DataMapController : Controller
     {
         IDataMapService dataMapService;
-        IIndexCompany indexCompany;
+        List<Company> Companies { get; set; }
 
-        public DataMapController(IDataMapService dataMapService, IIndexCompany indexCompany)
+        public DataMapController(IDataMapService dataMapService)
         {
             this.dataMapService = dataMapService;
-            this.indexCompany = indexCompany;
-            indexCompany.Companys = dataMapService.GetAllCompanyData().ToList();
+            Companies = dataMapService.GetAllCompanyData().ToList();
         }
 
         // GET: DataMap
@@ -58,7 +57,7 @@ namespace CompanyData.Web.Controllers
             OrderByCompanyParameters(sortOrder);
             FilterByCompanyParameters(searchString);
             int pageSize = 10;
-            var result = await PaginatedList<Company>.CreateAsync(indexCompany.Companys, pageNumber ?? 1, pageSize);
+            var result = PaginatedList<Company>.Create(Companies, pageNumber ?? 1, pageSize);
             return View(result);
         }
 
@@ -69,7 +68,7 @@ namespace CompanyData.Web.Controllers
                 return;
             }
 
-            indexCompany.Companys = indexCompany.Companys.Where(c => c.Name.Contains(searchString)).ToList();
+            Companies = Companies.Where(c => c.Name.Contains(searchString)).ToList();
         }
 
         private void OrderByCompanyParameters(string sortOrder)
@@ -81,28 +80,28 @@ namespace CompanyData.Web.Controllers
             switch (sortOrder)
             {
                 case SortingParameters.NameDesc:
-                    indexCompany.Companys = indexCompany.Companys.OrderByDescending(s => s.Name).ToList();
+                    Companies = Companies.OrderByDescending(s => s.Name).ToList();
                     break;
                 case SortingParameters.NameAsc:
-                    indexCompany.Companys = indexCompany.Companys.OrderBy(s => s.Name).ToList();
+                    Companies = Companies.OrderBy(s => s.Name).ToList();
                     break;
                 case SortingParameters.NumberOfContactsDesc:
-                    indexCompany.Companys = indexCompany.Companys.OrderByDescending(s => s.NumberOfContacts).ToList();
+                    Companies = Companies.OrderByDescending(s => s.NumberOfContacts).ToList();
                     break;
                 case SortingParameters.NumberOfContactsAsc:
-                    indexCompany.Companys = indexCompany.Companys.OrderBy(s => s.NumberOfContacts).ToList();
+                    Companies = Companies.OrderBy(s => s.NumberOfContacts).ToList();
                     break;
                 case SortingParameters.NumberOfOrdersDesc:
-                    indexCompany.Companys = indexCompany.Companys.OrderByDescending(s => s.NumberOfOrders).ToList();
+                    Companies = Companies.OrderByDescending(s => s.NumberOfOrders).ToList();
                     break;
                 case SortingParameters.NumberOfOrdersAsc:
-                    indexCompany.Companys = indexCompany.Companys.OrderBy(s => s.NumberOfOrders).ToList();
+                    Companies = Companies.OrderBy(s => s.NumberOfOrders).ToList();
                     break;
                 case SortingParameters.IncomeDesc:
-                    indexCompany.Companys = indexCompany.Companys.OrderByDescending(s => s.TotalIncome).ToList();
+                    Companies = Companies.OrderByDescending(s => s.TotalIncome).ToList();
                     break;
                 case SortingParameters.IncomeAsc:
-                    indexCompany.Companys = indexCompany.Companys.OrderBy(s => s.TotalIncome).ToList();
+                    Companies = Companies.OrderBy(s => s.TotalIncome).ToList();
                     break;
                 default:
                     break;
@@ -111,8 +110,8 @@ namespace CompanyData.Web.Controllers
 
         public ActionResult Edit()
         {
-            indexCompany.Companys = dataMapService.GetAllCompanyData().ToList();
-            return View(indexCompany);
+            Companies = dataMapService.GetAllCompanyData().ToList();
+            return View(Companies);
         }
 
         // GET: DataMap/Details/5
@@ -148,8 +147,8 @@ namespace CompanyData.Web.Controllers
         public ActionResult Edit(int id)
         {
              //indexCompany.OnGetAsync();
-            indexCompany.Companys = dataMapService.GetAllCompanyData().ToList();
-            return View(indexCompany);
+            Companies = dataMapService.GetAllCompanyData().ToList();
+            return View(Companies);
         }
 
         // POST: DataMap/Edit/5
@@ -191,5 +190,6 @@ namespace CompanyData.Web.Controllers
                 return View();
             }
         }
+
     }
 }

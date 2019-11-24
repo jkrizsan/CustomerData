@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CompanyData.Data.Models;
+using CompanyData.Data.Parameters;
 using CompanyData.Services.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -43,13 +44,13 @@ namespace CompanyData.Web.Controllers
         // POST: Company/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Company company)
         {
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
+                int Id = companyService.Add(company);
+                return RedirectToAction(ActionNames.Edit, ControllerNames.Company, new { Id });
             }
             catch
             {
@@ -84,7 +85,8 @@ namespace CompanyData.Web.Controllers
         // GET: Company/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var company = companyService.GetCompanyById(id);
+            return View(company);
         }
 
         // POST: Company/Delete/5
@@ -94,11 +96,10 @@ namespace CompanyData.Web.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
+                companyService.DeleteCompany(id);
+                return RedirectToAction(ActionNames.Index, ControllerNames.DataMap);
             }
-            catch
+            catch(Exception e)
             {
                 return View();
             }

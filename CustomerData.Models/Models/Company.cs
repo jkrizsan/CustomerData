@@ -21,5 +21,41 @@ namespace CompanyData.Data.Models
         public int NumberOfOrders { get; set; }
         [Display(Name = ("Total Income"))]
         public double TotalIncome { get; set; }
+
+        public void RemoveContact(Contact contact)
+        {
+            foreach (var item in contact.Orders)
+            {
+                TotalIncome -= item.OrderPrice;
+                NumberOfOrders--;
+            }
+            NumberOfContacts--;
+        }
+        public void UpdateContactNumber()
+        {
+            NumberOfContacts++;
+        }
+        public void UpdateByOrder(bool isNew, Order order)
+        {
+            if (isNew)
+            {
+                NumberOfOrders++;
+                TotalIncome += order.OrderPrice;
+            }
+            else
+            {
+                TotalIncome = 0;
+                foreach (var contact in Contacts)
+                {
+                    TotalIncome = contact.Income;
+                }
+            }
+
+        }
+        public void DeleteOrder(Order order)
+        {
+            TotalIncome -= order.OrderPrice;
+            NumberOfOrders--;
+        }
     }
 }

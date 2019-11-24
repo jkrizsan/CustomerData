@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CompanyData.Data.Models;
+using CompanyData.Data.Parameters;
 using CompanyData.Services.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,23 +30,24 @@ namespace CompanyData.Web.Controllers
         }
 
         // GET: Contact/Create
-        public ActionResult Create()
+        public ActionResult Create(int companyId)
         {
-            return View();
+            var contact = new Contact() { CompanyId = companyId };
+            return View(contact);
         }
 
         // POST: Contact/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Contact conatct)
         {
             try
             {
-                // TODO: Add insert logic here
 
-                return RedirectToAction(nameof(Index));
+                contactService.Add(conatct);
+                return RedirectToAction(ActionNames.Edit, ControllerNames.Company, new { Id = conatct.CompanyId });
             }
-            catch
+            catch(Exception e)
             {
                 return View();
             }
@@ -75,23 +77,24 @@ namespace CompanyData.Web.Controllers
         }
 
         // GET: Contact/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int Id)
         {
-            return View();
+            var contact = contactService.GetContactById(Id);
+            return View(contact);
         }
 
         // POST: Contact/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int Id, IFormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                contactService.DeleteContact(Id);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(ActionNames.Index, ControllerNames.DataMap);
             }
-            catch
+            catch(Exception e)
             {
                 return View();
             }

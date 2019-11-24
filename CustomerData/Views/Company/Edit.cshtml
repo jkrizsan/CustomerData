@@ -5,10 +5,12 @@
     Layout = "~/Views/Home/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<h1>Edit Company</h1>
 
-<h4>Company</h4>
-<hr />
+<div>
+    <a asp-action="Create" asp-controller="Contact" asp-route-companyId="@Model.Id">Create New Contact</a>
+</div>
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
@@ -19,24 +21,81 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+
+            <dt class="col-sm-10">
+                @Html.DisplayNameFor(model => model.NumberOfContacts):
+                @Html.DisplayFor(model => model.NumberOfContacts)
+            </dt>
+            <dt class="col-sm-10">
+                @Html.DisplayNameFor(model => model.NumberOfOrders):
+                @Html.DisplayFor(model => model.NumberOfOrders)
+            </dt>
+            <dt class="col-sm-10">
+                @Html.DisplayNameFor(model => model.TotalIncome):
+                @Html.DisplayFor(model => model.TotalIncome)
+            </dt>
+
+            <div id="Contacts" style="width:1020px; margin: 0 auto;border:1px solid green;">
+                <style>
+
+                    table, th, td {
+                        border-collapse: collapse;
+                    }
+
+                    th, td {
+                        padding: 5px;
+                        text-align: center;
+                    }
+                </style>
+                
+                
+                
+                <table id="ContactDataTable" class="display" style="width:100%">
+                    
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Contacts[0].FirstName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Contacts[0].MiddleName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Contacts[0].LastName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Contacts[0].NumnerOfOrders)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Contacts[0].Income)
+                            </th>
+
+                    </thead>
+                    <tbody>
+
+                        @foreach (var contact in Model.Contacts)
+                        {
+                        <tr>
+                            <td class="Td"><a asp-controller="Contact" asp-action="Edit" asp-route-id="@contact.Id">@contact.FirstName</a></td>
+                            <td>@contact.MiddleName</td>
+                            <td>@contact.LastName</td>
+                            <td>@contact.NumnerOfOrders</td>
+                            <td>@contact.Income</td>
+                            <td>
+                                <a asp-action="Delete" asp-controller="Contact" asp-route-id="@contact.Id">Delete</a>
+                            </td>
+                        </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+                </div>
+              
+            
             <div class="form-group">
-                <label asp-for="NumberOfContacts" class="control-label"></label>
-                <input asp-for="NumberOfContacts" class="form-control" />
-                <span asp-validation-for="NumberOfContacts" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberOfOrders" class="control-label"></label>
-                <input asp-for="NumberOfOrders" class="form-control" />
-                <span asp-validation-for="NumberOfOrders" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TotalIncome" class="control-label"></label>
-                <input asp-for="TotalIncome" class="form-control" />
-                <span asp-validation-for="TotalIncome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
         </form>
     </div>
 </div>

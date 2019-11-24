@@ -16,6 +16,22 @@ namespace CompanyData.Services.Services
             this.context = context;
         }
 
+        public void DeleteOrders(Contact contact)
+        {
+            context.RemoveRange(contact.Orders);
+            context.SaveChanges();
+        }
+
+        public void DeleteContact(int Id)
+        {
+            var contact = GetContactById(Id);
+            var company = context.Companys.Where(c => c.Id.Equals(contact.CompanyId)).SingleOrDefault();
+            company.RemoveContact(contact);
+            DeleteOrders(contact);
+            context.Contacts.Remove(contact);
+            context.SaveChanges();
+        }
+
         public Contact GetContactById(int Id)
         {
             var contact = context.Contacts.Where(c => c.Id.Equals(Id)).SingleOrDefault();
@@ -34,9 +50,16 @@ namespace CompanyData.Services.Services
             oldOldContact.FirstName = contact.FirstName;
             oldOldContact.MiddleName = contact.MiddleName;
             oldOldContact.LastName = contact.LastName;
-            oldOldContact.Income = contact.Income;
-            oldOldContact.NumnerOfOrders = contact.NumnerOfOrders;
             context.SaveChanges();
+        }
+
+        public int Add(Contact conatct)
+        {
+            var company = context.Companys.Where(c => c.Id.Equals(conatct.CompanyId)).SingleOrDefault();
+            company.Contacts.Add(conatct);
+            company.UpdateContactNumber();
+            context.SaveChanges();
+            return conatct.Id;
         }
     }
 }
