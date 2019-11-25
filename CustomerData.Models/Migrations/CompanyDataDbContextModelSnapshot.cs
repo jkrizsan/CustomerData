@@ -82,7 +82,7 @@ namespace CompanyData.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ContactId")
+                    b.Property<int>("ContactId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("OrderDate")
@@ -111,7 +111,9 @@ namespace CompanyData.Data.Migrations
                 {
                     b.HasOne("CompanyData.Data.Models.Contact", null)
                         .WithMany("Orders")
-                        .HasForeignKey("ContactId");
+                        .HasForeignKey("ContactId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

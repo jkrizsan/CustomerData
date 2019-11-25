@@ -46,10 +46,10 @@ namespace CompanyData.Services.Services
 
         public void SaveContact(Contact contact)
         {
-            var oldOldContact = GetContactById(contact.Id);
-            oldOldContact.FirstName = contact.FirstName;
-            oldOldContact.MiddleName = contact.MiddleName;
-            oldOldContact.LastName = contact.LastName;
+            var oldContact = GetContactById(contact.Id);
+            oldContact.FirstName = contact.FirstName;
+            oldContact.MiddleName = contact.MiddleName;
+            oldContact.LastName = contact.LastName;
             context.SaveChanges();
         }
 
