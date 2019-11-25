@@ -12,7 +12,7 @@ namespace CompanyData.Tests.ServiceUnitTests
         protected readonly string TestString = "test";
 
         protected  CompanyDataDbContext context;
-        protected OrderService orderService;
+        protected IOrderService orderService;
         protected void Initialize()
         {
             var options = new DbContextOptionsBuilder<CompanyDataDbContext>()

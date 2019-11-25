@@ -69,7 +69,7 @@ namespace CompanyData.Services.Services
             {
                 foreach (var item in contacts)
                 {
-                    item.Orders = contactService.GetOrdersByContactId(item.Id).ToList();
+                    item.Orders = orderService.GetOrdersByContactId(item.Id).ToList();
                 }
             }
             return contacts;

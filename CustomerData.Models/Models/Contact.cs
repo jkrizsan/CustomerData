@@ -25,26 +25,21 @@ namespace CompanyData.Data.Models
         public double Income { get; set; }
         public int CompanyId { get; set; }
 
-        public bool UpdateByOrder(Order order)
+        public void AddOrder(Order order)
         {
-            var oldOrder = Orders.Where(o => o.Id.Equals(order.Id)).SingleOrDefault();
-            if(oldOrder == null)
+            Orders.Add(order);
+            NumnerOfOrders++;
+            Income += order.OrderPrice;
+        }
+
+        public void UpdateByOrder(Order oldOrder, Order order)
+        {            
+            oldOrder.OrderDate = order.OrderDate;
+            oldOrder.OrderPrice = order.OrderPrice;
+            Income = 0;
+            foreach (var o in Orders)
             {
-                Orders.Add(order);
-                NumnerOfOrders++;
-                Income += order.OrderPrice;
-                return true;
-            }
-            else
-            {
-                oldOrder.OrderDate = order.OrderDate;
-                oldOrder.OrderPrice = order.OrderPrice;
-                Income = 0;
-                foreach (var o in Orders)
-                {
-                    Income += o.OrderPrice;
-                }
-                return false;
+                Income += o.OrderPrice;
             }
         }
         public void DeleteOrder (Order order)

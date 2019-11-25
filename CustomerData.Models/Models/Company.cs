@@ -15,7 +15,7 @@ namespace CompanyData.Data.Models
         [Display(Name = ("Name"))]
         public string Name { get; set; }
         public List<Contact> Contacts { get; set; }
-        [Display(Name=("Number of Contacts"))]
+        [Display(Name = ("Number of Contacts"))]
         public int NumberOfContacts { get; set; }
         [Display(Name = ("Number of Orders"))]
         public int NumberOfOrders { get; set; }
@@ -35,21 +35,20 @@ namespace CompanyData.Data.Models
         {
             NumberOfContacts++;
         }
-        public void UpdateByOrder(bool isNew, Order order)
+
+        public void AddOrder(Order order)
         {
-            if (isNew)
+            NumberOfOrders++;
+            TotalIncome += order.OrderPrice;
+        }
+
+        public void UpdateByOrder(Order order)
+        {
+            TotalIncome = 0;
+            foreach (var contact in Contacts)
             {
-                NumberOfOrders++;
-                TotalIncome += order.OrderPrice;
-            }
-            else
-            {
-                TotalIncome = 0;
-                foreach (var contact in Contacts)
-                {
-                    TotalIncome = contact.Income;
-                }
-            }
+                TotalIncome += contact.Income;
+           }
         }
         public void DeleteOrder(Order order)
         {

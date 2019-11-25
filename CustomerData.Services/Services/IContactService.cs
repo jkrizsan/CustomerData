@@ -8,7 +8,6 @@ namespace CompanyData.Services.Services
     public interface IContactService
     {
         Contact GetContactById(int Id);
-        IEnumerable<Order> GetOrdersByContactId(int Id);
         void SaveContact(Contact contact);
         void DeleteContact(int id);
         void DeleteOrders(Contact contact);

@@ -17,7 +17,7 @@ namespace CompanyData.Tests.ServiceUnitTests
         public void Setup()
         {
             Initialize();
-            contactService = new ContactService(context);
+            contactService = new ContactService(context, orderService);
             companyService = new CompanyService(context, contactService, orderService);
         }
 

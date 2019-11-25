@@ -11,9 +11,11 @@ namespace CompanyData.Services.Services
     public class ContactService : IContactService
     {
         CompanyDataDbContext context;
-        public ContactService(CompanyDataDbContext context)
+        IOrderService orderService;
+        public ContactService(CompanyDataDbContext context, IOrderService orderService)
         {
             this.context = context;
+            this.orderService = orderService;
         }
 
         public void DeleteOrders(Contact contact)
@@ -34,14 +36,7 @@ namespace CompanyData.Services.Services
 
         public Contact GetContactById(int Id)
         {
-            var contact = context.Contacts.Where(c => c.Id.Equals(Id)).SingleOrDefault();
-            contact.Orders = GetOrdersByContactId(contact.Id).ToList();
-            return contact;
-        }
-
-        public IEnumerable<Order> GetOrdersByContactId(int Id)
-        {
-            return context.Orders.Where( o => o.ContactId.Equals(Id) );
+            return orderService.GetContactById(Id);
         }
 
         public void SaveContact(Contact contact)
