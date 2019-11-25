@@ -68,7 +68,7 @@ namespace CompanyData.Web.Controllers
             try
             {
                 orderService.SaveOrder(order);
-                return RedirectToAction(ActionNames.Index, ControllerNames.DataMap);
+                return RedirectToAction();
             }
             catch
             {

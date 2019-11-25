@@ -20,7 +20,7 @@ namespace CompanyData.Web.Controllers
         public DataMapController(IDataMapService dataMapService)
         {
             this.dataMapService = dataMapService;
-            Companies = dataMapService.GetAllCompanyData().ToList();
+            Companies = dataMapService.GetAllCompanyData(false).ToList();
         }
 
         // GET: DataMap

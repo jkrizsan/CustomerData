@@ -7,7 +7,7 @@ namespace CompanyData.Services.Services
 {
     public interface IDataMapService
     {
-        IEnumerable<Company> GetAllCompanyData();
+        IEnumerable<Company> GetAllCompanyData(bool byOrders = true);
     }
     
 }

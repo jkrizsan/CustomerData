@@ -41,12 +41,12 @@ namespace CompanyData.Services.Services
             context.SaveChanges();
         }
 
-        public IEnumerable<Company> GetAllCompanies()
+        public IEnumerable<Company> GetAllCompanies(bool byOrders = true)
         {
             var companies = context.Companys.ToList();
             foreach (var item in companies)
             {
-                item.Contacts = GetContactsByCompanyId(item.Id).ToList();
+                item.Contacts = GetContactsByCompanyId(item.Id, byOrders).ToList();
             }
             return companies;
         }
@@ -62,12 +62,15 @@ namespace CompanyData.Services.Services
             return company;
         }
 
-        public IEnumerable<Contact> GetContactsByCompanyId(int Id)
+        public IEnumerable<Contact> GetContactsByCompanyId(int Id, bool byOrders = true)
         {
             var contacts = context.Contacts.Where(c => c.CompanyId.Equals(Id));
-            foreach (var item in contacts)
+            if (byOrders)
             {
-                item.Orders = contactService.GetOrdersByContactId(item.Id).ToList();
+                foreach (var item in contacts)
+                {
+                    item.Orders = contactService.GetOrdersByContactId(item.Id).ToList();
+                }
             }
             return contacts;
         }

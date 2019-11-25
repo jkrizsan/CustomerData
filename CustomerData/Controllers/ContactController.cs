@@ -44,8 +44,8 @@ namespace CompanyData.Web.Controllers
             try
             {
 
-                contactService.Add(conatct);
-                return RedirectToAction(ActionNames.Edit, ControllerNames.Company, new { Id = conatct.CompanyId });
+                var contactId = contactService.Add(conatct);
+                return RedirectToAction(ActionNames.Edit, ControllerNames.Contact, new { Id = contactId });
             }
             catch(Exception e)
             {

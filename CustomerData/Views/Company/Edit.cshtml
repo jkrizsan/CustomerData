@@ -23,19 +23,39 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
-            <dt class="col-sm-10">
-                @Html.DisplayNameFor(model => model.NumberOfContacts):
-                @Html.DisplayFor(model => model.NumberOfContacts)
-            </dt>
-            <dt class="col-sm-10">
-                @Html.DisplayNameFor(model => model.NumberOfOrders):
-                @Html.DisplayFor(model => model.NumberOfOrders)
-            </dt>
-            <dt class="col-sm-10">
-                @Html.DisplayNameFor(model => model.TotalIncome):
-                @Html.DisplayFor(model => model.TotalIncome)
-            </dt>
 
+            <div id="Contacts" style="width:1020px; margin: 0 auto;">
+                <style>
+
+                    table, th, td {
+                        border-collapse: collapse;
+                    }
+
+                    th, td {
+                        padding: 5px;
+                        text-align: center;
+                    }
+                </style>
+                <table id="ContactTable" class="display" style="width:100%">
+
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.NumberOfContacts)</th>
+                            <th>@Html.DisplayNameFor(model => model.NumberOfOrders)</th>
+                            <th>@Html.DisplayNameFor(model => model.TotalIncome)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Html.DisplayFor(model => model.NumberOfContacts)</td>
+                            <td>@Html.DisplayFor(model => model.NumberOfOrders)</td>
+                            <td>@Html.DisplayFor(model => model.TotalIncome)</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <h4>Contacts:</h4>
             <div id="Contacts" style="width:1020px; margin: 0 auto;border:1px solid green;">
                 <style>
 
@@ -48,8 +68,6 @@
                         text-align: center;
                     }
                 </style>
-
-
 
                 <table id="ContactDataTable" class="display" style="width:100%">
 
@@ -76,16 +94,17 @@
 
                         @foreach (var contact in Model.Contacts)
                         {
-                            <tr>
-                                <td class="Td"><a asp-controller="@ControllerNames.Contact" asp-action="@ActionNames.Edit" asp-route-id="@contact.Id">@contact.FirstName</a></td>
-                                <td>@contact.MiddleName</td>
-                                <td>@contact.LastName</td>
-                                <td>@contact.NumnerOfOrders</td>
-                                <td>@contact.Income</td>
-                                <td>
-                                    <a asp-action="@ActionNames.Delete" asp-controller="@ControllerNames.Contact" asp-route-id="@contact.Id">Delete</a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td class="Td"><a asp-controller="@ControllerNames.Contact" asp-action="@ActionNames.Edit" asp-route-id="@contact.Id">@contact.FirstName</a></td>
+                            <td>@contact.MiddleName</td>
+                            <td>@contact.LastName</td>
+                            <td>@contact.NumnerOfOrders</td>
+                            <td>@contact.Income</td>
+                            <td>
+                                <a asp-action="@ActionNames.Edit" asp-controller="@ControllerNames.Contact" asp-route-id="@contact.Id">Edit</a>
+                                <a asp-action="@ActionNames.Delete" asp-controller="@ControllerNames.Contact" asp-route-id="@contact.Id">Delete</a>
+                            </td>
+                        </tr>
 
                         }
 
@@ -93,6 +112,7 @@
                 </table>
             </div>
 
+            <h1></h1>
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

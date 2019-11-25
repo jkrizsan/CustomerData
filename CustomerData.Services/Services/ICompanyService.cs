@@ -7,8 +7,8 @@ namespace CompanyData.Services.Services
 {
     public interface ICompanyService
     {
-        IEnumerable<Company> GetAllCompanies();
-        IEnumerable<Contact> GetContactsByCompanyId(int Id);
+        IEnumerable<Company> GetAllCompanies(bool byOrders = true);
+        IEnumerable<Contact> GetContactsByCompanyId(int Id, bool byOrders = true);
         Company GetCompanyById(int Id);
         void SaveCompany(Company company);
         void DeleteCompany(int id);

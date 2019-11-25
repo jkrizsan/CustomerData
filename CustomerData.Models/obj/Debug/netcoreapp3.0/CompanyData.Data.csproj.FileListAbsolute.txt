@@ -7,4 +7,3 @@ D:\AI\CustomerData\CustomerData\CustomerData.Models\obj\Debug\netcoreapp3.0\Comp
 D:\AI\CustomerData\CustomerData\CustomerData.Models\obj\Debug\netcoreapp3.0\CompanyData.Data.AssemblyInfo.cs
 D:\AI\CustomerData\CustomerData\CustomerData.Models\obj\Debug\netcoreapp3.0\CompanyData.Data.dll
 D:\AI\CustomerData\CustomerData\CustomerData.Models\obj\Debug\netcoreapp3.0\CompanyData.Data.pdb
-D:\AI\CustomerData\CustomerData\CustomerData.Models\obj\Debug\netcoreapp3.0\CompanyData.Data.csprojAssemblyReference.cache

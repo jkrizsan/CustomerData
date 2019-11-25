@@ -19,10 +19,9 @@ namespace CompanyData.Services.Services
             this.companyService = companyService;
         }
 
-        public IEnumerable<Company> GetAllCompanyData()
+        public IEnumerable<Company> GetAllCompanyData(bool byOrders = true)
         {
-            return companyService.GetAllCompanies();
+            return companyService.GetAllCompanies(byOrders);
         }
-        
     }
 }

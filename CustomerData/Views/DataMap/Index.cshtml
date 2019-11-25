@@ -11,7 +11,7 @@
     <a asp-action="@ActionNames.Create" asp-controller="@ControllerNames.Company">Create New Company</a>
 </div>
 
-<div id="DataMap" style="width:1020px; margin: 0 auto; border:1px solid blue;">
+<div id="DataMap" style="width:100%; margin: 0 auto; border:1px solid blue;">
     <style>
 
         table, th, td {
@@ -61,6 +61,7 @@
                     <td>Total: @company.NumberOfOrders</td>
                     <td>Total: @company.TotalIncome</td>
                     <td>
+                        <a asp-action="@ActionNames.Edit" asp-controller="@ControllerNames.Company" asp-route-id="@company.Id">Edit</a>
                         <a asp-action="@ActionNames.Delete" asp-controller="@ControllerNames.Company" asp-route-id="@company.Id">Delete</a>
                     </td>
                 </tr>
@@ -73,6 +74,7 @@
                         <td>@contact.NumnerOfOrders</td>
                         <td>@contact.Income</td>
                         <td>
+                            <a asp-action="@ActionNames.Edit" asp-controller="@ControllerNames.Contact" asp-route-id="@contact.Id">Edit</a>
                             <a asp-action="@ActionNames.Delete" asp-controller="@ControllerNames.Contact" asp-route-id="@contact.Id">Delete</a>
                         </td>
                     </tr>
