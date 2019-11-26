@@ -31,3 +31,8 @@ CompanyData.Tests/bin/Debug/netcoreapp3.0/nunit_random_seed.tmp
 CompanyData.Tests/bin/Debug/netcoreapp3.0/nunit_random_seed.tmp
 CustomerData/.vs/CompanyData/v16/.suo
 CustomerData/.vs/CompanyData/v16/Server/sqlite3/storage.ide
+*.tmp
+CompanyData.Tests/bin/Debug/netcoreapp3.0/nunit_random_seed.tmp
+CustomerData/.vs/CompanyData/DesignTimeBuild/.dtbcache
+CustomerData/.vs/CompanyData/v16/.suo
+CustomerData/.vs/CompanyData/v16/Server/sqlite3/storage.ide
