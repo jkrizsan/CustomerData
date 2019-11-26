@@ -49,7 +49,7 @@ namespace CompanyData.Tests.ServiceUnitTests
         [Test]
         public void Test_DeleteContact_1()
         {
-            contactService.DeleteContact(TestInt);
+            contactService.Delete(TestInt);
             var readContact = context.Contacts.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(null, readContact);
         }
@@ -74,7 +74,7 @@ namespace CompanyData.Tests.ServiceUnitTests
         public void Test_SaveContact_1()
         {
             var contact2 = new Contact() { Id = TestInt, FirstName = "test2" };
-            contactService.SaveContact(contact2);
+            contactService.Update(contact2);
             var readContact = context.Contacts.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(TestInt, readContact.Id);
             Assert.AreEqual("test2", readContact.FirstName);
@@ -90,7 +90,7 @@ namespace CompanyData.Tests.ServiceUnitTests
             var contact2 = new Contact() { Id = 2, FirstName = "test2", CompanyId=TestInt };
             context.Contacts.Add(contact2);
             context.SaveChanges();
-            contactService.Add(contact2);
+            contactService.Create(contact2);
             var readContact = context.Contacts.Where(c => c.Id.Equals(2)).SingleOrDefault();
             Assert.AreEqual(2, readContact.Id);
             Assert.AreEqual("test2", readContact.FirstName);

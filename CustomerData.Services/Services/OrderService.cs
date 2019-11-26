@@ -13,7 +13,7 @@ namespace CompanyData.Services.Services
         {
             this.context = context;
         }
-        public void Add(Order order)
+        public void Create(Order order)
         {
             var contact = context.Contacts.Where(c => c.Id.Equals(order.ContactId)).SingleOrDefault();
             var company = context.Companys.Where(c => c.Id.Equals(contact.CompanyId)).SingleOrDefault();
@@ -42,13 +42,13 @@ namespace CompanyData.Services.Services
             return company;
         }
 
-        public void DeleteOrder(int Id)
+        public void Delete(Order order)
         {
-            var order = context.Orders.Where(o => o.Id.Equals(Id)).SingleOrDefault();
-            var contact = context.Contacts.Where(c => c.Id.Equals(order.ContactId)).SingleOrDefault();
+            var oldOrder = context.Orders.Where(o => o.Id.Equals(order.Id)).SingleOrDefault();
+            var contact = context.Contacts.Where(c => c.Id.Equals(oldOrder.ContactId)).SingleOrDefault();
             var company = context.Companys.Where(c => c.Id.Equals(contact.CompanyId)).SingleOrDefault();
-            contact.DeleteOrder(order);
-            company.DeleteOrder(order);
+            contact.DeleteOrder(oldOrder);
+            company.DeleteOrder(oldOrder);
             context.SaveChanges();
         }
 
@@ -57,7 +57,7 @@ namespace CompanyData.Services.Services
             return context.Orders.Where(o => o.ContactId.Equals(Id));
         }
 
-        public void SaveOrder(Order order)
+        public void Update(Order order)
         {
             var oldOrder = GetOrderById(order.Id);
             var contact = GetContactById(oldOrder.ContactId);

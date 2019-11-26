@@ -22,16 +22,15 @@ namespace CompanyData.Services.Services
             this.orderService = orderService;
         }
 
-        public int Add(Company company)
+        public int Create(Company company)
         {
             context.Companys.Add(company);
             context.SaveChanges();
             return company.Id;
         }
 
-        public void DeleteCompany(int id)
+        public void Delete(Company company)
         {
-            var company = GetCompanyById(id);
             foreach (var item in company.Contacts)
             {
                 contactService.DeleteOrders(item);
@@ -75,7 +74,7 @@ namespace CompanyData.Services.Services
             return contacts;
         }
 
-        public void SaveCompany(Company company)
+        public void Update(Company company)
         {
             var oldCompany = GetCompanyById(company.Id);
             oldCompany.Name = company.Name;

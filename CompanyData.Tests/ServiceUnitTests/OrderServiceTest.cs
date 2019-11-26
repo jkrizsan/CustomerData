@@ -38,7 +38,7 @@ namespace CompanyData.Tests.ServiceUnitTests
         public void Test_Add_1()
         {
             
-            orderService.Add(order);
+            orderService.Create(order);
             var readOrder = context.Orders.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(TestInt, readOrder.Id);
             Assert.AreEqual(TestDouble, readOrder.OrderPrice);
@@ -89,7 +89,7 @@ namespace CompanyData.Tests.ServiceUnitTests
         [Test]
         public void Test_DeleteOrder_1()
         {
-            orderService.DeleteOrder(TestInt);
+            orderService.Delete(order);
             var readOrder = context.Orders.Where(o => o.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(null, readOrder);
         }
@@ -120,7 +120,7 @@ namespace CompanyData.Tests.ServiceUnitTests
         {
             var order2 = new Order() { Id = TestInt, OrderPrice = 2, ContactId = TestInt };
             
-            orderService.SaveOrder(order2);
+            orderService.Update(order2);
             var readOrder = context.Orders.Where(o => o.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(2, readOrder.OrderPrice);
            

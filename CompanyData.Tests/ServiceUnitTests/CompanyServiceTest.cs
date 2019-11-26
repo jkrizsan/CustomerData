@@ -27,7 +27,7 @@ namespace CompanyData.Tests.ServiceUnitTests
         public void Test_Add_1()
         {
             var company = new Company() {Id = TestInt, Name = TestString };
-            companyService.Add(company);
+            companyService.Create(company);
             var readCompany = context.Companys.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(TestInt, readCompany.Id);
             Assert.AreEqual(TestString, readCompany.Name);
@@ -43,7 +43,7 @@ namespace CompanyData.Tests.ServiceUnitTests
             context.Companys.Add(company);
             context.SaveChanges();
             
-            companyService.DeleteCompany(TestInt);
+            companyService.Delete(company);
   
             var readCompany = context.Companys.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(null, readCompany);
@@ -60,7 +60,7 @@ namespace CompanyData.Tests.ServiceUnitTests
             company.Contacts.Add(contact);
             context.SaveChanges();
             
-            companyService.DeleteCompany(TestInt);
+            companyService.Delete(company);
             
             var readCompany = context.Companys.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(null, readCompany);
@@ -81,7 +81,7 @@ namespace CompanyData.Tests.ServiceUnitTests
             company.Contacts.Add(contact);
             context.SaveChanges();
 
-            companyService.DeleteCompany(TestInt);
+            companyService.Delete(company);
 
             var readCompany = context.Companys.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(null, readCompany);
@@ -188,7 +188,7 @@ namespace CompanyData.Tests.ServiceUnitTests
             context.Companys.Add(company);
             context.SaveChanges();
             company.Name = "test2";
-            companyService.SaveCompany(company);
+            companyService.Update(company);
             var readCompany = context.Companys.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(TestInt, readCompany.Id);
             Assert.AreEqual("test2", readCompany.Name);

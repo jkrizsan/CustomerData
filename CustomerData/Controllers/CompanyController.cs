@@ -47,7 +47,7 @@ namespace CompanyData.Web.Controllers
             try
             {
                 // TODO: Add insert logic here
-                int Id = companyService.Add(company);
+                int Id = companyService.Create(company);
                 return RedirectToAction(ActionNames.Edit, ControllerNames.Company, new { Id });
             }
             catch
@@ -71,7 +71,7 @@ namespace CompanyData.Web.Controllers
             try
             {
                 // TODO: Add update logic here
-                companyService.SaveCompany(company);
+                companyService.Update(company);
                 return RedirectToAction();
             }
             catch
@@ -90,11 +90,11 @@ namespace CompanyData.Web.Controllers
         // POST: Company/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Company company)
         {
             try
             {
-                companyService.DeleteCompany(id);
+                companyService.Delete(company);
                 return RedirectToAction(ActionNames.Index, ControllerNames.DataMap);
             }
             catch(Exception e)

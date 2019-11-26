@@ -8,9 +8,9 @@ namespace CompanyData.Services.Services
     public interface IContactService
     {
         Contact GetContactById(int Id);
-        void SaveContact(Contact contact);
-        void DeleteContact(int id);
+        void Update(Contact contact);
+        void Delete(int id);
         void DeleteOrders(Contact contact);
-        int Add(Contact conatct);
+        int Create(Contact conatct);
     }
 }

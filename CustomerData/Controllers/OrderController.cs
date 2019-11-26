@@ -44,7 +44,7 @@ namespace CompanyData.Web.Controllers
             try
             {
 
-                orderService.Add(order);
+                orderService.Create(order);
                 return RedirectToAction(ActionNames.Edit, ControllerNames.Contact, new { Id = order.ContactId } );
             }
             catch
@@ -67,7 +67,7 @@ namespace CompanyData.Web.Controllers
         {
             try
             {
-                orderService.SaveOrder(order);
+                orderService.Update(order);
                 return RedirectToAction();
             }
             catch
@@ -91,7 +91,7 @@ namespace CompanyData.Web.Controllers
             try
             {
 
-                orderService.DeleteOrder(id);
+                orderService.Delete(order);
                 return RedirectToAction(ActionNames.Index, ControllerNames.DataMap);
             }
             catch

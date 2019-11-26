@@ -44,7 +44,7 @@ namespace CompanyData.Web.Controllers
             try
             {
 
-                var contactId = contactService.Add(conatct);
+                var contactId = contactService.Create(conatct);
                 return RedirectToAction(ActionNames.Edit, ControllerNames.Contact, new { Id = contactId });
             }
             catch(Exception e)
@@ -67,7 +67,7 @@ namespace CompanyData.Web.Controllers
         {
             try
             {
-                contactService.SaveContact(contact);
+                contactService.Update(contact);
                 return RedirectToAction();
             }
             catch(Exception e)
@@ -90,7 +90,7 @@ namespace CompanyData.Web.Controllers
         {
             try
             {
-                contactService.DeleteContact(Id);
+                contactService.Delete(Id);
 
                 return RedirectToAction(ActionNames.Index, ControllerNames.DataMap);
             }

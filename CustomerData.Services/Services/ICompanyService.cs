@@ -10,8 +10,8 @@ namespace CompanyData.Services.Services
         IEnumerable<Company> GetAllCompanies(bool byOrders = true);
         IEnumerable<Contact> GetContactsByCompanyId(int Id, bool byOrders = true);
         Company GetCompanyById(int Id);
-        void SaveCompany(Company company);
-        void DeleteCompany(int id);
-        int Add(Company company);
+        void Update(Company company);
+        void Delete(Company company);
+        int Create(Company company);
     }
 }

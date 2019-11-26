@@ -24,7 +24,7 @@ namespace CompanyData.Services.Services
             context.SaveChanges();
         }
 
-        public void DeleteContact(int Id)
+        public void Delete(int Id)
         {
             var contact = GetContactById(Id);
             var company = context.Companys.Where(c => c.Id.Equals(contact.CompanyId)).SingleOrDefault();
@@ -39,7 +39,7 @@ namespace CompanyData.Services.Services
             return orderService.GetContactById(Id);
         }
 
-        public void SaveContact(Contact contact)
+        public void Update(Contact contact)
         {
             var oldContact = GetContactById(contact.Id);
             oldContact.FirstName = contact.FirstName;
@@ -48,7 +48,7 @@ namespace CompanyData.Services.Services
             context.SaveChanges();
         }
 
-        public int Add(Contact conatct)
+        public int Create(Contact conatct)
         {
             var company = context.Companys.Where(c => c.Id.Equals(conatct.CompanyId)).SingleOrDefault();
             company.Contacts.Add(conatct);
