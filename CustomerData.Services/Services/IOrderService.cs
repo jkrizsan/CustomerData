@@ -1,16 +1,17 @@
 ﻿using CompanyData.Data.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CompanyData.Services.Services
 {
     public interface IOrderService
     {
-        void Create(Order order);
-        Order GetOrderById(int Id);
-        void Delete(Order order);
-        IEnumerable<Order> GetOrdersByContactId(int Id);
-        Contact GetContactById(int Id);
-        Company GetCompanyByContactId(int Id);
-        void Update(Order order);
+        Task Create(Order order);
+        Task<Order> GetOrderById(int Id);
+        Task Delete(Order order);
+        Task<IEnumerable<Order>> GetOrdersByContactId(int Id);
+        Task<Contact> GetContactById(int Id);
+        Task<Company> GetCompanyByContactId(int Id);
+        Task Update(Order order);
     }
 }

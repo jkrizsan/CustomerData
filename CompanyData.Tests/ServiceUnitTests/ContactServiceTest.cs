@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CompanyData.Tests.ServiceUnitTests
 {
@@ -29,7 +30,7 @@ namespace CompanyData.Tests.ServiceUnitTests
             company.Contacts.Add(contact);
             order = new Order() { Id = TestInt, OrderPrice = TestDouble, ContactId = TestInt };
             context.Orders.Add(order);
-            context.SaveChanges();
+            context.SaveChangesAsync();
         }
 
         #region DeleteOrders
@@ -59,9 +60,9 @@ namespace CompanyData.Tests.ServiceUnitTests
         #region GetContactById
 
         [Test]
-        public void Test_GetContactById_1()
+        public async Task Test_GetContactById_1()
         {
-            var readContact = contactService.GetContactById(TestInt);
+            var readContact = await contactService.GetContactById(TestInt);
             Assert.AreEqual(TestInt, readContact.Id);
             Assert.AreEqual(TestString, readContact.FirstName);
         }
@@ -71,10 +72,10 @@ namespace CompanyData.Tests.ServiceUnitTests
         #region SaveContact
 
         [Test]
-        public void Test_SaveContact_1()
+        public async Task Test_Update_1()
         {
             var contact2 = new Contact() { Id = TestInt, FirstName = "test2" };
-            contactService.Update(contact2);
+            await contactService.Update(contact2);
             var readContact = context.Contacts.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(TestInt, readContact.Id);
             Assert.AreEqual("test2", readContact.FirstName);
@@ -85,12 +86,12 @@ namespace CompanyData.Tests.ServiceUnitTests
         #region Add
 
         [Test]
-        public void Test_Add_1()
+        public async Task Test_Create_1()
         {
             var contact2 = new Contact() { Id = 2, FirstName = "test2", CompanyId=TestInt };
             context.Contacts.Add(contact2);
-            context.SaveChanges();
-            contactService.Create(contact2);
+            await context.SaveChangesAsync();
+            await contactService.Create(contact2);
             var readContact = context.Contacts.Where(c => c.Id.Equals(2)).SingleOrDefault();
             Assert.AreEqual(2, readContact.Id);
             Assert.AreEqual("test2", readContact.FirstName);

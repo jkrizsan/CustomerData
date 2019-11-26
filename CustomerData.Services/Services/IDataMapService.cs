@@ -2,12 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CompanyData.Services.Services
 {
     public interface IDataMapService
     {
-        IEnumerable<Company> GetAllCompanyData(bool byOrders = true);
+        Task<IEnumerable<Company>> GetAllCompanyData(bool byOrders = true);
     }
-    
 }

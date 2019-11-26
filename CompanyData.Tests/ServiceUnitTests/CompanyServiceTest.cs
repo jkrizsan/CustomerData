@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CompanyData.Tests.ServiceUnitTests
 {
@@ -24,10 +25,10 @@ namespace CompanyData.Tests.ServiceUnitTests
         #region Add
 
         [Test]
-        public void Test_Add_1()
+        public async Task Test_Add_1()
         {
             var company = new Company() {Id = TestInt, Name = TestString };
-            companyService.Create(company);
+            await companyService.Create(company);
             var readCompany = context.Companys.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(TestInt, readCompany.Id);
             Assert.AreEqual(TestString, readCompany.Name);
@@ -37,30 +38,30 @@ namespace CompanyData.Tests.ServiceUnitTests
 
         #region DeleteCompany
         [Test]
-        public void Test_DeleteCompany_NoContactsNoOrders()
+        public async Task Test_DeleteCompany_NoContactsNoOrders()
         {
             var company = new Company() { Id = TestInt, Name = TestString };
             context.Companys.Add(company);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             
-            companyService.Delete(company);
+            await companyService.Delete(company);
   
             var readCompany = context.Companys.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(null, readCompany);
         }
 
         [Test]
-        public void Test_DeleteCompany_WithContactsNoOrders()
+        public async Task Test_DeleteCompany_WithContactsNoOrders()
         {
             var company = new Company() { Id = TestInt, Name = TestString };
             var contact = new Contact() { Id = TestInt, FirstName = TestString, MiddleName = TestString, LastName = TestString };
             context.Companys.Add(company);
             context.Contacts.Add(contact);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             company.Contacts.Add(contact);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             
-            companyService.Delete(company);
+            await companyService.Delete(company);
             
             var readCompany = context.Companys.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(null, readCompany);
@@ -69,7 +70,7 @@ namespace CompanyData.Tests.ServiceUnitTests
         }
 
         [Test]
-        public void Test_DeleteCompany_WithContactsWithOrders()
+        public async Task Test_DeleteCompany_WithContactsWithOrders()
         {
             var company = new Company() { Id = TestInt, Name = TestString };
             var contact = new Contact() { Id = TestInt, FirstName = TestString, MiddleName = TestString, LastName = TestString };
@@ -77,11 +78,11 @@ namespace CompanyData.Tests.ServiceUnitTests
             context.Companys.Add(company);
             context.Contacts.Add(contact);
             context.Orders.Add(order);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             company.Contacts.Add(contact);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
-            companyService.Delete(company);
+            await companyService.Delete(company);
 
             var readCompany = context.Companys.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(null, readCompany);
@@ -96,7 +97,7 @@ namespace CompanyData.Tests.ServiceUnitTests
 
         [Test]
         [Ignore("There are some problems")]
-        public void Test_GetAllCompanies_ByOrderIsFalse()
+        public async Task Test_GetAllCompanies_ByOrderIsFalse()
         {
             var company = new Company() { Id = TestInt, Name = TestString };
             var contact = new Contact() { Id = TestInt, FirstName = TestString, MiddleName = TestString, LastName = TestString };
@@ -104,11 +105,11 @@ namespace CompanyData.Tests.ServiceUnitTests
             context.Companys.Add(company);
             context.Contacts.Add(contact);
             context.Orders.Add(order);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             company.Contacts.Add(contact);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
-            var companies = companyService.GetAllCompanies(false).ToList();
+            var companies = (await companyService.GetAllCompanies(false)).ToList();
 
             Assert.AreEqual(TestInt, companies.Count);
             Assert.AreEqual(TestInt, companies[0].Contacts.Count);
@@ -116,7 +117,7 @@ namespace CompanyData.Tests.ServiceUnitTests
         }
 
         [Test]
-        public void Test_GetAllCompanies_ByOrderIsTrue()
+        public async Task Test_GetAllCompanies_ByOrderIsTrue()
         {
             var company = new Company() { Id = TestInt, Name = TestString };
             var contact = new Contact() { Id = TestInt, FirstName = TestString, MiddleName = TestString, LastName = TestString };
@@ -124,11 +125,11 @@ namespace CompanyData.Tests.ServiceUnitTests
             context.Companys.Add(company);
             context.Contacts.Add(contact);
             context.Orders.Add(order);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             company.Contacts.Add(contact);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
-            var companies = companyService.GetAllCompanies(true).ToList();
+            var companies = (await companyService.GetAllCompanies(true)).ToList();
 
             Assert.AreEqual(TestInt, companies.Count);
             Assert.AreEqual(TestInt, companies[0].Contacts.Count);
@@ -140,13 +141,13 @@ namespace CompanyData.Tests.ServiceUnitTests
         #region GetCompanyById
 
         [Test]
-        public void Test_GetCompanyById()
+        public async Task Test_GetCompanyById()
         {
             var company = new Company() { Id = TestInt, Name = TestString };
             context.Companys.Add(company);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
-            var readCompany = companyService.GetCompanyById(TestInt);
+            var readCompany = await companyService.GetCompanyById(TestInt);
 
             Assert.AreEqual(TestInt, readCompany.Id);
             Assert.AreEqual(TestString, readCompany.Name);
@@ -157,7 +158,7 @@ namespace CompanyData.Tests.ServiceUnitTests
         #region GetContactsByCompanyId
 
         [Test]
-        public void Test_GetContactsByCompanyId_Id()
+        public async Task Test_GetContactsByCompanyId_Id()
         {
             var company = new Company() { Id = TestInt, Name = TestString };
             var contact1 = new Contact() { Id = TestInt, FirstName = TestString, MiddleName = TestString, LastName = TestString };
@@ -165,12 +166,12 @@ namespace CompanyData.Tests.ServiceUnitTests
             context.Companys.Add(company);
             context.Contacts.Add(contact1);
             context.Contacts.Add(contact2);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             company.Contacts.Add(contact1);
             company.Contacts.Add(contact2);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
-            var contacts = companyService.GetContactsByCompanyId(TestInt).ToList();
+            var contacts = (await companyService.GetContactsByCompanyId(TestInt)).ToList();
 
             Assert.AreEqual(2, contacts.Count);
             Assert.AreEqual(TestInt, contacts[0].Id);
@@ -182,13 +183,13 @@ namespace CompanyData.Tests.ServiceUnitTests
         #region SaveCompany
 
         [Test]
-        public void Test_SaveCompany()
+        public async Task Test_SaveCompany()
         {
             var company = new Company() { Id = TestInt, Name = TestString };
             context.Companys.Add(company);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             company.Name = "test2";
-            companyService.Update(company);
+            await companyService.Update(company);
             var readCompany = context.Companys.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(TestInt, readCompany.Id);
             Assert.AreEqual("test2", readCompany.Name);

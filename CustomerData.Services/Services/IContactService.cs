@@ -1,16 +1,14 @@
 ﻿using CompanyData.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace CompanyData.Services.Services
 {
     public interface IContactService
     {
-        Contact GetContactById(int Id);
-        void Update(Contact contact);
-        void Delete(int id);
-        void DeleteOrders(Contact contact);
-        int Create(Contact conatct);
+        Task<Contact> GetContactById(int Id);
+        Task Update(Contact contact);
+        Task Delete(int id);
+        Task DeleteOrders(Contact contact);
+        Task<int> Create(Contact conatct);
     }
 }

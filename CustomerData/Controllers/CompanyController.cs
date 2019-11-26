@@ -42,12 +42,12 @@ namespace CompanyData.Web.Controllers
         // POST: Company/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Company company)
+        public async Task<ActionResult> Create(Company company)
         {
             try
             {
                 // TODO: Add insert logic here
-                int Id = companyService.Create(company);
+                int Id = await companyService.Create(company);
                 return RedirectToAction(ActionNames.Edit, ControllerNames.Company, new { Id });
             }
             catch
@@ -57,21 +57,21 @@ namespace CompanyData.Web.Controllers
         }
 
         // GET: Company/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var company = companyService.GetCompanyById(id);
+            var company = await companyService.GetCompanyById(id);
             return View(company);
         }
 
         // POST: Company/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Company company)
+        public async Task<ActionResult> Edit(int id, Company company)
         {
             try
             {
                 // TODO: Add update logic here
-                companyService.Update(company);
+                await companyService.Update(company);
                 return RedirectToAction();
             }
             catch
@@ -81,20 +81,20 @@ namespace CompanyData.Web.Controllers
         }
 
         // GET: Company/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var company = companyService.GetCompanyById(id);
+            var company = await companyService.GetCompanyById(id);
             return View(company);
         }
 
         // POST: Company/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Company company)
+        public async Task<ActionResult> Delete(int id, Company company)
         {
             try
             {
-                companyService.Delete(company);
+                await companyService.Delete(company);
                 return RedirectToAction(ActionNames.Index, ControllerNames.DataMap);
             }
             catch(Exception e)
