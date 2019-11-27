@@ -1,0 +1,14 @@
+D:\AI\CustomerData\CustomerData\CompanyData.Tests\bin\Debug\netcoreapp3.0\NUnit3.TestAdapter.dll
+D:\AI\CustomerData\CustomerData\CompanyData.Tests\bin\Debug\netcoreapp3.0\nunit.engine.netstandard.dll
+D:\AI\CustomerData\CustomerData\CompanyData.Tests\bin\Debug\netcoreapp3.0\CompanyData.Tests.dll
+D:\AI\CustomerData\CustomerData\CompanyData.Tests\bin\Debug\netcoreapp3.0\Microsoft.TestPlatform.CoreUtilities.dll
+D:\AI\CustomerData\CustomerData\CompanyData.Tests\bin\Debug\netcoreapp3.0\Microsoft.TestPlatform.PlatformAbstractions.dll
+D:\AI\CustomerData\CustomerData\CompanyData.Tests\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+D:\AI\CustomerData\CustomerData\CompanyData.Tests\bin\Debug\netcoreapp3.0\Microsoft.TestPlatform.CommunicationUtilities.dll
+D:\AI\CustomerData\CustomerData\CompanyData.Tests\bin\Debug\netcoreapp3.0\Microsoft.TestPlatform.CrossPlatEngine.dll
+D:\AI\CustomerData\CustomerData\CompanyData.Tests\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.TestPlatform.Common.dll
+D:\AI\CustomerData\CustomerData\CompanyData.Tests\bin\Debug\netcoreapp3.0\testhost.dll
+D:\AI\CustomerData\CustomerData\CompanyData.Tests\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+D:\AI\CustomerData\CustomerData\CompanyData.Tests\bin\Debug\netcoreapp3.0\nunit.framework.dll
+D:\AI\CustomerData\CustomerData\CompanyData.Tests\bin\Debug\netcoreapp3.0\System.Xml.XPath.XmlDocument.dll
+D:\AI\CustomerData\CustomerData\CompanyData.Tests\bin\Debug\netcoreapp3.0\CompanyData.Data.dll

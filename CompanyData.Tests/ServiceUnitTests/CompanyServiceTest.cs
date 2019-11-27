@@ -1,6 +1,5 @@
 ﻿using CompanyData.Data;
 using CompanyData.Data.Models;
-using CompanyData.Services.Repositor;
 using CompanyData.Services.Services;
 using NUnit.Framework;
 using System;
@@ -15,23 +14,15 @@ namespace CompanyData.Tests.ServiceUnitTests
     {
         private ICompanyService companyService;
         private IContactService contactService;
-        private IGenericRepository<Company> genericReository;
 
-        public CompanyServiceTest(CompanyDataDbContext context,
-                             IContactService contactService,
-                             IOrderService orderService,
-                             IGenericRepository<Company> genericReository)
-        {
-            this.context = context;
-            this.contactService = contactService;
-            this.orderService = orderService;
-            this.genericReository = genericReository;
-        }
 
         [SetUp]
         public void Setup()
         {
             Initialize();
+            orderService = new OrderService(context);
+            contactService = new ContactService(context, orderService);
+            companyService = new CompanyService(context, contactService, orderService);
         }
 
         #region Add
@@ -106,27 +97,6 @@ namespace CompanyData.Tests.ServiceUnitTests
         #endregion DeleteCompany
 
         #region GetAllCompanies
-
-        [Test]
-        [Ignore("There are some problems")]
-        public async Task Test_GetAllCompanies_ByOrderIsFalse()
-        {
-            var company = new Company() { Id = TestInt, Name = TestString };
-            var contact = new Contact() { Id = TestInt, FirstName = TestString, MiddleName = TestString, LastName = TestString };
-            var order = new Order() { Id = TestInt, ContactId = TestInt, OrderPrice = TestDouble, OrderDate = DateTime.Now };
-            context.Companys.Add(company);
-            context.Contacts.Add(contact);
-            context.Orders.Add(order);
-            await context.SaveChangesAsync();
-            company.Contacts.Add(contact);
-            await context.SaveChangesAsync();
-
-            var companies = (await companyService.GetAllCompanies()).ToList();
-
-            Assert.AreEqual(TestInt, companies.Count);
-            Assert.AreEqual(TestInt, companies[0].Contacts.Count);
-            Assert.AreEqual(0, companies[0].Contacts[0].Orders.Count);
-        }
 
         [Test]
         public async Task Test_GetAllCompanies_ByOrderIsTrue()

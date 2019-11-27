@@ -12,18 +12,10 @@ namespace CompanyData.Tests.ServiceUnitTests
 {
     class OrderServiceTest : ServiceTest
     {
-        private ICompanyService companyService;
-        private IContactService contactService;
         private Company company;
         private Contact contact;
         private Order order;
 
-        public OrderServiceTest(CompanyDataDbContext context, ICompanyService companyService, IContactService contactService)
-        {
-            this.context = context;
-            this.companyService = companyService;
-            this.contactService = contactService;
-        }
 
         [SetUp]
         public void Setup()
@@ -38,6 +30,8 @@ namespace CompanyData.Tests.ServiceUnitTests
             order = new Order() { Id = TestInt, OrderPrice = TestDouble, ContactId = TestInt };
             context.Orders.Add(order);
             context.SaveChangesAsync();
+
+            orderService = new OrderService(context);
         }
 
         #region Add

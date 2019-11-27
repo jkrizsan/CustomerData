@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using CompanyData.Data;
 using CompanyData.Data.Models;
-using CompanyData.Services.Repositor;
 using Microsoft.EntityFrameworkCore;
 
 namespace CompanyData.Services.Services
@@ -15,22 +14,20 @@ namespace CompanyData.Services.Services
         CompanyDataDbContext context;
         IContactService contactService;
         IOrderService orderService;
-        private IGenericRepository<Company> genericReository;
          
         public CompanyService(CompanyDataDbContext context,
                              IContactService contactService,
-                             IOrderService orderService,
-                             IGenericRepository<Company> genericReository)
+                             IOrderService orderService)
         {
             this.context = context;
             this.contactService = contactService;
             this.orderService = orderService;
-            this.genericReository = genericReository;
         }
         
         public async Task<int> Create(Company company)
         {
-            await genericReository.Create(company);
+            context.Companys.Add(company);
+            await context.SaveChangesAsync();
             return company.Id;
         }
 

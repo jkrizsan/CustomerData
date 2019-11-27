@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using CompanyData.Data;
 using CompanyData.Services;
-using CompanyData.Services.Repositor;
 using CompanyData.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,7 +34,6 @@ namespace CompanyData
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             var options = new DbContextOptionsBuilder<CompanyDataDbContext>()
                       .Options;
