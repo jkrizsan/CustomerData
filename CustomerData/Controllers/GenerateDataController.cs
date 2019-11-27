@@ -14,9 +14,9 @@ namespace CompanyData.Web.Controllers
         private IGenerateDataService generateDataService;
         private GenerateDataDto generateData;
 
-        public GenerateDataController(IGenerateDataService generateDataServic)
+        public GenerateDataController(IGenerateDataService generateDataService)
         {
-            this.generateDataService = generateDataServic;
+            this.generateDataService = generateDataService;
         }
 
         // GET: GenerateDataService/Edit/5

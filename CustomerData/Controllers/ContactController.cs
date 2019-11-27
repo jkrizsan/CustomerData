@@ -17,17 +17,6 @@ namespace CompanyData.Web.Controllers
         {
             this.contactService = contactService;
         }
-        // GET: Contact
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Contact/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Contact/Create
         public ActionResult Create(int companyId)
@@ -86,11 +75,11 @@ namespace CompanyData.Web.Controllers
         // POST: Contact/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int Id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int Id, Contact contact)
         {
             try
             {
-                await contactService.Delete(Id);
+                await contactService.Delete(contact);
 
                 return RedirectToAction(ActionNames.Index, ControllerNames.DataMap);
             }

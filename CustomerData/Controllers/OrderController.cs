@@ -17,17 +17,6 @@ namespace CompanyData.Web.Controllers
         {
             this.orderService = orderService;
         }
-        // GET: Order
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Order/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Order/Create
         public ActionResult Create(int contactId)

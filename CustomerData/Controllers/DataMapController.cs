@@ -107,20 +107,5 @@ namespace CompanyData.Web.Controllers
                     break;
             }
         }
-
-        public async Task<ActionResult> Edit()
-        {
-            Companies = (await dataMapService.GetAllCompanyData()).ToList();
-            return View(Companies);
-        }
-
-        // GET: DataMap/Edit/5
-        public async Task<ActionResult> Edit(int id)
-        {
-             //indexCompany.OnGetAsync();
-            Companies = (await dataMapService.GetAllCompanyData()).ToList();
-            return View(Companies);
-        }
-
     }
 }

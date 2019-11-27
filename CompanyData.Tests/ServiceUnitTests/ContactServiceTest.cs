@@ -48,9 +48,9 @@ namespace CompanyData.Tests.ServiceUnitTests
         #region DeleteContact
 
         [Test]
-        public void Test_DeleteContact_1()
+        public async Task Test_DeleteContact_1()
         {
-            contactService.Delete(TestInt);
+            await contactService.Delete(new Contact() {Id = TestInt });
             var readContact = context.Contacts.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
             Assert.AreEqual(null, readContact);
         }

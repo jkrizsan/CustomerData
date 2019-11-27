@@ -25,13 +25,13 @@ namespace CompanyData.Services.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task Delete(int Id)
+        public async Task Delete(Contact contact)
         {
-            var contact = await GetContactById(Id);
-            var company = context.Companys.Where(c => c.Id.Equals(contact.CompanyId)).SingleOrDefault();
-            company.RemoveContact(contact);
-            await DeleteOrders(contact);
-            context.Contacts.Remove(contact);
+            var oldContact = await GetContactById(contact.Id);
+            var company = context.Companys.Where(c => c.Id.Equals(oldContact.CompanyId)).SingleOrDefault();
+            company.RemoveContact(oldContact);
+            await DeleteOrders(oldContact);
+            context.Contacts.Remove(oldContact);
             await context.SaveChangesAsync();
         }
 

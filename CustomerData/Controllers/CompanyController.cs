@@ -20,18 +20,6 @@ namespace CompanyData.Web.Controllers
             this.companyService = companyService;
         }
 
-        // GET: Company
-        public ActionResult Index()
-        {
-            return View(new Company());
-        }
-
-        // GET: Company/Details/5
-        public ActionResult Details(int id)
-        {
-            return View(new Company());
-        }
-
         // GET: Company/Create
         public ActionResult Create()
         {
