@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using CompanyData.Data;
 using CompanyData.Data.Models;
+using CompanyData.Services.Repositor;
+using Microsoft.EntityFrameworkCore;
 
 namespace CompanyData.Services.Services
 {
@@ -13,20 +15,22 @@ namespace CompanyData.Services.Services
         CompanyDataDbContext context;
         IContactService contactService;
         IOrderService orderService;
-
+        private IGenericRepository<Company> genericReository;
+         
         public CompanyService(CompanyDataDbContext context,
                              IContactService contactService,
-                             IOrderService orderService)
+                             IOrderService orderService,
+                             IGenericRepository<Company> genericReository)
         {
             this.context = context;
             this.contactService = contactService;
             this.orderService = orderService;
+            this.genericReository = genericReository;
         }
-
+        
         public async Task<int> Create(Company company)
         {
-            context.Companys.Add(company);
-            await context.SaveChangesAsync();
+            await genericReository.Create(company);
             return company.Id;
         }
 
@@ -41,37 +45,38 @@ namespace CompanyData.Services.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Company>> GetAllCompanies(bool byOrders = true)
+        public async Task<IEnumerable<Company>> GetAllCompanies()
         {
-            var companies = context.Companys.ToList();
-            foreach (var item in companies)
-            {
-                item.Contacts = (await GetContactsByCompanyId(item.Id, byOrders)).ToList();
-            }
+            var companies = context.Companys.Include(c => c.Contacts).ToList();
+            //foreach (var item in companies)
+            //{
+            //    item.Contacts = (await GetContactsByCompanyId(item.Id, byOrders)).ToList();
+            //}
             return companies;
         }
 
         public async Task<Company> GetCompanyById(int Id)
         {
-            var company = context.Companys.Where(c => c.Id.Equals(Id)).SingleOrDefault();
-            company.Contacts = (await GetContactsByCompanyId(company.Id)).ToList();
-            foreach (var contact in company.Contacts)
-            {
-                contact.Orders = (await orderService.GetOrdersByContactId(contact.Id)).ToList();
-            }
+            var company = context.Companys.Where(c => c.Id.Equals(Id))
+                                            .Include(c => c.Contacts)
+                                            .SingleOrDefault();
+            //foreach (var contact in company.Contacts)
+            //{
+            //    contact.Orders = (await orderService.GetOrdersByContactId(contact.Id)).ToList();
+            //}
             return company;
         }
 
-        public async Task<IEnumerable<Contact>> GetContactsByCompanyId(int Id, bool byOrders = true)
+        public async Task<IEnumerable<Contact>> GetContactsByCompanyId(int Id)
         {
-            var contacts = context.Contacts.Where(c => c.CompanyId.Equals(Id));
-            if (byOrders)
-            {
-                foreach (var item in contacts)
-                {
-                    item.Orders = (await orderService.GetOrdersByContactId(item.Id)).ToList();
-                }
-            }
+            var contacts = context.Contacts.Where(c => c.CompanyId.Equals(Id))
+                                            .Include(c => c.Orders);
+            
+            //foreach (var item in contacts)
+            //{
+            //    item.Orders = (await orderService.GetOrdersByContactId(item.Id)).ToList();
+            //}
+            
             return contacts;
         }
 

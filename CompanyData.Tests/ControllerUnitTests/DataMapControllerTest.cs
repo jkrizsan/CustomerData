@@ -25,10 +25,9 @@ namespace CompanyData.Tests.ControllerUnitTests
         [Test]
         public async Task Test_Index_1()
         {
-            mockDataMapService.Setup(s => s.GetAllCompanyData(false))
+            mockDataMapService.Setup(s => s.GetAllCompanyData())
                 .ReturnsAsync(new List<Company>(){ new Company() {Name = TestString } });
             var controller = new DataMapController(mockDataMapService.Object);
-
 
             var result = await controller.Index("", "", "",1);
 

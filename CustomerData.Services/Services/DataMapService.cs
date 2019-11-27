@@ -20,9 +20,9 @@ namespace CompanyData.Services.Services
             this.companyService = companyService;
         }
 
-        public async Task<IEnumerable<Company>> GetAllCompanyData(bool byOrders = true)
+        public async Task<IEnumerable<Company>> GetAllCompanyData()
         {
-            return await companyService.GetAllCompanies(byOrders);
+            return await companyService.GetAllCompanies();
         }
     }
 }

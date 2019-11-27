@@ -1,4 +1,6 @@
-﻿using CompanyData.Data.Models;
+﻿using CompanyData.Data;
+using CompanyData.Data.Models;
+using CompanyData.Services.Repositor;
 using CompanyData.Services.Services;
 using NUnit.Framework;
 using System;
@@ -11,15 +13,25 @@ namespace CompanyData.Tests.ServiceUnitTests
 {
     class CompanyServiceTest : ServiceTest
     {
-        private CompanyService companyService;
-        private ContactService contactService;
+        private ICompanyService companyService;
+        private IContactService contactService;
+        private IGenericRepository<Company> genericReository;
+
+        public CompanyServiceTest(CompanyDataDbContext context,
+                             IContactService contactService,
+                             IOrderService orderService,
+                             IGenericRepository<Company> genericReository)
+        {
+            this.context = context;
+            this.contactService = contactService;
+            this.orderService = orderService;
+            this.genericReository = genericReository;
+        }
 
         [SetUp]
         public void Setup()
         {
             Initialize();
-            contactService = new ContactService(context, orderService);
-            companyService = new CompanyService(context, contactService, orderService);
         }
 
         #region Add
@@ -109,7 +121,7 @@ namespace CompanyData.Tests.ServiceUnitTests
             company.Contacts.Add(contact);
             await context.SaveChangesAsync();
 
-            var companies = (await companyService.GetAllCompanies(false)).ToList();
+            var companies = (await companyService.GetAllCompanies()).ToList();
 
             Assert.AreEqual(TestInt, companies.Count);
             Assert.AreEqual(TestInt, companies[0].Contacts.Count);
@@ -129,7 +141,7 @@ namespace CompanyData.Tests.ServiceUnitTests
             company.Contacts.Add(contact);
             await context.SaveChangesAsync();
 
-            var companies = (await companyService.GetAllCompanies(true)).ToList();
+            var companies = (await companyService.GetAllCompanies()).ToList();
 
             Assert.AreEqual(TestInt, companies.Count);
             Assert.AreEqual(TestInt, companies[0].Contacts.Count);

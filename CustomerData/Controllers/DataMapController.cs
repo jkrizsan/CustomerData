@@ -25,7 +25,7 @@ namespace CompanyData.Web.Controllers
         // GET: DataMap
         public async Task<ActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
-            Companies = (await dataMapService.GetAllCompanyData(false)).ToList();
+            Companies = (await dataMapService.GetAllCompanyData()).ToList();
 
             ViewData[SortingParameters.NameParam] = sortOrder == SortingParameters.NameAsc
                 ? SortingParameters.NameDesc 

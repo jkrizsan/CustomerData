@@ -79,9 +79,10 @@ namespace CompanyData.Web.Controllers
         {
             try
             {
-
+                var oldOrder = await orderService.GetOrderById(order.Id);
+                var contactId = oldOrder.ContactId;
                 await orderService.Delete(order);
-                return RedirectToAction(ActionNames.Index, ControllerNames.DataMap);
+                return RedirectToAction(ActionNames.Edit, ControllerNames.Contact, new { Id = contactId });
             }
             catch
             {

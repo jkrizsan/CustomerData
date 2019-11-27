@@ -6,8 +6,8 @@ namespace CompanyData.Services.Services
 {
     public interface ICompanyService
     {
-        Task<IEnumerable<Company>> GetAllCompanies(bool byOrders = true);
-        Task<IEnumerable<Contact>> GetContactsByCompanyId(int Id, bool byOrders = true);
+        Task<IEnumerable<Company>> GetAllCompanies();
+        Task<IEnumerable<Contact>> GetContactsByCompanyId(int Id);
         Task<Company> GetCompanyById(int Id);
         Task Update(Company company);
         Task Delete(Company company);

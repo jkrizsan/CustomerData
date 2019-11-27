@@ -8,6 +8,6 @@ namespace CompanyData.Services.Services
 {
     public interface IDataMapService
     {
-        Task<IEnumerable<Company>> GetAllCompanyData(bool byOrders = true);
+        Task<IEnumerable<Company>> GetAllCompanyData();
     }
 }

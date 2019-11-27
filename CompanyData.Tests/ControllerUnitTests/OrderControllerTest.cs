@@ -114,6 +114,7 @@ namespace CompanyData.Tests.ControllerUnitTests
         public async Task Test_Delete_order()
         {
             mockOrderService.Setup(s => s.Delete(new Order()));
+            mockOrderService.Setup(s => s.GetOrderById(TestInt)).ReturnsAsync(new Order());
             var controller = new OrderController(mockOrderService.Object);
             var order = new Order()
             {
@@ -124,8 +125,8 @@ namespace CompanyData.Tests.ControllerUnitTests
             var result = await controller.Delete(TestInt, order);
 
             var RedirectToActionResult = (RedirectToActionResult)result;
-            Assert.AreEqual(ControllerNames.DataMap, RedirectToActionResult.ControllerName);
-            Assert.AreEqual(ActionNames.Index, RedirectToActionResult.ActionName);
+            Assert.AreEqual(ControllerNames.Contact, RedirectToActionResult.ControllerName);
+            Assert.AreEqual(ActionNames.Edit, RedirectToActionResult.ActionName);
         }
 
         #endregion Delete

@@ -1,4 +1,5 @@
-﻿using CompanyData.Data.Models;
+﻿using CompanyData.Data;
+using CompanyData.Data.Models;
 using CompanyData.Services.Services;
 using NUnit.Framework;
 using System;
@@ -11,18 +12,24 @@ namespace CompanyData.Tests.ServiceUnitTests
 {
     class ContactServiceTest : ServiceTest
     {
-        private CompanyService companyService;
-        private ContactService contactService;
+        private ICompanyService companyService;
+        private IContactService contactService;
         private Company company;
         private Contact contact;
         private Order order;
+
+        public ContactServiceTest(CompanyDataDbContext context, IOrderService orderService, ICompanyService companyService)
+        {
+            this.context = context;
+            this.orderService = orderService;
+            this.companyService = companyService;
+        }
 
         [SetUp]
         public void Setup()
         {
             Initialize();
-            contactService = new ContactService(context, orderService);
-            companyService = new CompanyService(context, contactService, orderService);
+            
             company = new Company() { Id = TestInt, Name = TestString };
             contact = new Contact() { Id = TestInt, FirstName = TestString, MiddleName = TestString, LastName = TestString };
             context.Companys.Add(company);
