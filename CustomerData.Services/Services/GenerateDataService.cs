@@ -70,6 +70,11 @@ namespace CompanyData.Services
             context.Companys.RemoveRange(companies);
 
             await context.SaveChangesAsync();
+
+            var reports = context.Reports.ToList();
+            context.Reports.RemoveRange(reports);
+
+            await context.SaveChangesAsync();
         }
 
         public async Task GenerataCompanies(GenerateDataDto data)

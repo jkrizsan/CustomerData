@@ -10,5 +10,6 @@ namespace CompanyData.Data.Parameters
         public const string Create = nameof(Create);
         public const string Edit = nameof(Edit);
         public const string Delete = nameof(Delete);
+        public const string View = nameof(View);
     }
 }

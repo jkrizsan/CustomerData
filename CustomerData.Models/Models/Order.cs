@@ -10,7 +10,7 @@ namespace CompanyData.Data.Models
         public int Id { get; set; }
         [DataType(DataType.Date)]
         [Display(Name = "Date of Order")]
-        public DateTime OrderDate { get; set; } = DateTime.Now;
+        public DateTime OrderDate { get; set; } = DateTime.Now.Date;
         [Display(Name = "Price of Order")]
         public double OrderPrice { get; set; }
         [Display(Name = "Contact Id")]
