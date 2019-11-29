@@ -14,6 +14,7 @@ namespace CompanyData.Web.Controllers
     {
         private IReportService reportService;
         private List<Report> Reports;
+        private readonly string Separator = " ";
         public ReportController(IReportService reportService)
         {
             this.reportService = reportService;
@@ -37,7 +38,6 @@ namespace CompanyData.Web.Controllers
             ViewData[SortingParameters.DateTimeParam] = sortOrder == SortingParameters.DateTimeAsc
                 ? SortingParameters.DateTimeDesc
                 : SortingParameters.DateTimeAsc;
-
 
             if (searchString != null)
             {
@@ -64,12 +64,12 @@ namespace CompanyData.Web.Controllers
         {
             if (!string.IsNullOrEmpty(searchString))
             {
-                var words = searchString.Split(' ').ToList();
+                var words = searchString.Split(Separator).ToList();
                 List<Report> tmpList = new List<Report>();
                 foreach (var item in words)
                 {
                     tmpList.AddRange( Reports.Where(c => c.TableName.Contains(item) || c.KeyValues.Contains(item)
-                    || c.NewValues.Contains(item) || c.OldValues != null && c.OldValues.Contains(item)).ToList());
+                    || (c.NewValues != null && c.NewValues.Contains(item)) || (c.OldValues != null && c.OldValues.Contains(item))).ToList());
                 }
                 Reports = tmpList.Distinct().ToList();
             }
@@ -81,7 +81,6 @@ namespace CompanyData.Web.Controllers
             {
                 Reports = Reports.Where(c => c.DateTime < endDate).ToList();
             }
-
         }
 
         private async Task OrderByCompanyParameters(string sortOrder)

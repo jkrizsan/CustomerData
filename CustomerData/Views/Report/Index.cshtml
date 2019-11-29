@@ -23,8 +23,8 @@
         <div class="form-actions no-color">
             <p>
                 Find Report: <input type="text" name="SearchString" value="@ViewBag.CurrentFilter" />
-                Start Date: <input type="date" name="startDate" value="@ViewBag.CurrentStartDateTime" />
-                End Date: <input type="date" name="endDate" value="@ViewBag.CurrentEndDateTime" />
+                Start Date: <input type="date" name="startDate" @ViewBag.CurrentStartDateTime" />
+                End Date: <input type="date" name="endDate" @ViewBag.CurrentEndDateTime" />
                 <input type="submit" value="Search" class="btn btn-default" />
             </p>
             
@@ -41,7 +41,7 @@
                     @Html.DisplayNameFor(model => model[0].KeyValues)
                 </th>
                 <th>
-                    @Html.ActionLink(@Html.DisplayNameFor(model => model[0].DateTime), @ActionNames.Index, new { sortOrder = ViewBag.DateTimeParam, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model[0].DateTime), @ActionNames.Index, new { sortOrder = ViewBag.DateTimeParam, currentStartData = ViewBag.CurrentStartDateTime, currentEndData = ViewBag.CurrentEndDateTime })
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model[0].OldValues)
@@ -58,12 +58,29 @@
                 <td>@report.TableName</td>
                 <td>@report.KeyValues</td>
                 <td>@report.DateTime</td>
-                <td> <a asp-controller="@ControllerNames.Report" asp-action="@ActionNames.View" asp-route-Id="@report.Id">@report?.OldValues@*?.Substring(0, 25)*@</a></td>
-                <td> <a asp-controller="@ControllerNames.Report" asp-action="@ActionNames.View" asp-route-Id="@report.Id">@report?.NewValues@*?.Substring(0, 25)*@</a></td>
+                <td>
+                    @if (@report.OldValues == null)
+                    {
+                        @report.OldValues
+                    }
+                    else
+                    {
+                        <a asp-controller="@ControllerNames.Report" asp-action="@ActionNames.View" asp-route-Id="@report.Id">@(report.OldValues.Length > 20 ? report.OldValues.Substring(0, 20) : report.OldValues)</a>
+                    }
+                </td>
+                <td>
+                    @if (@report.NewValues == null)
+                    {
+                        @report.NewValues
+                    }
+                    else
+                    {
+                        <a asp-controller="@ControllerNames.Report" asp-action="@ActionNames.View" asp-route-Id="@report.Id">@(report.NewValues.Length > 20 ? report.NewValues.Substring(0, 20) : report.NewValues)</a>
+
+                    }
+                </td>
             </tr>
             }
-            
-
         </tbody>
     </table>
     @{

@@ -63,6 +63,7 @@ namespace CompanyData.Tests.ControllerUnitTests
         {
             mockOrderService.Setup(s => s.GetOrderById(TestInt))
                 .ReturnsAsync(new Order() {ContactId = TestInt });
+
             var controller = new OrderController(mockOrderService.Object);
 
 

@@ -16,5 +16,6 @@ namespace CompanyData.Tests.ControllerUnitTests
         protected Mock<ICompanyService> mockCompanyService;
         protected Mock<IGenerateDataService> mockGenerateDataService;
         protected Mock<IDataMapService> mockDataMapService;
+        protected Mock<IReportService> mockReportService;
     }
 }
