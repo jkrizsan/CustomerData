@@ -11,7 +11,7 @@ namespace CompanyData.Services.Services
         Task Delete(Order order);
         Task<IEnumerable<Order>> GetOrdersByContactId(int Id);
         Task<Contact> GetContactById(int Id);
-        Task<Company> GetCompanyByContactId(int Id);
+        Task<Company> GetCompanyById(int Id);
         Task Update(Order order);
     }
 }

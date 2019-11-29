@@ -44,37 +44,18 @@ namespace CompanyData.Services.Services
 
         public async Task<IEnumerable<Company>> GetAllCompanies()
         {
-            var companies = context.Companys.Include(c => c.Contacts).ToList();
-            //foreach (var item in companies)
-            //{
-            //    item.Contacts = (await GetContactsByCompanyId(item.Id, byOrders)).ToList();
-            //}
-            return companies;
+            return context.Companys.Include(c => c.Contacts).AsNoTracking().ToList();
         }
 
         public async Task<Company> GetCompanyById(int Id)
         {
-            var company = context.Companys.Where(c => c.Id.Equals(Id))
-                                            .Include(c => c.Contacts)
-                                            .SingleOrDefault();
-            //foreach (var contact in company.Contacts)
-            //{
-            //    contact.Orders = (await orderService.GetOrdersByContactId(contact.Id)).ToList();
-            //}
-            return company;
+            return await orderService.GetCompanyById(Id);
         }
 
         public async Task<IEnumerable<Contact>> GetContactsByCompanyId(int Id)
         {
-            var contacts = context.Contacts.Where(c => c.CompanyId.Equals(Id))
+            return context.Contacts.Where(c => c.CompanyId.Equals(Id))
                                             .Include(c => c.Orders);
-            
-            //foreach (var item in contacts)
-            //{
-            //    item.Orders = (await orderService.GetOrdersByContactId(item.Id)).ToList();
-            //}
-            
-            return contacts;
         }
 
         public async Task Update(Company company)

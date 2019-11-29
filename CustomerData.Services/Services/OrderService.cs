@@ -1,5 +1,6 @@
 ﻿using CompanyData.Data;
 using CompanyData.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,11 +37,9 @@ namespace CompanyData.Services.Services
             return contact;
         }
 
-        public async Task<Company> GetCompanyByContactId(int Id)
+        public async Task<Company> GetCompanyById(int Id)
         {
-            var company = context.Companys.Where(c => c.Id.Equals(Id)).SingleOrDefault();
-            company.Contacts = context.Contacts.Where(c => c.CompanyId.Equals(company.Id)).ToList();
-            return company;
+            return context.Companys.Where(c => c.Id.Equals(Id)).Include(c => c.Contacts).SingleOrDefault();
         }
 
         public async Task Delete(Order order)
@@ -62,7 +61,7 @@ namespace CompanyData.Services.Services
         {
             var oldOrder = await GetOrderById(order.Id);
             var contact = await GetContactById(oldOrder.ContactId);
-            var company = await GetCompanyByContactId(contact.CompanyId);
+            var company = await GetCompanyById(contact.CompanyId);
             contact.UpdateByOrder(oldOrder, order);
             await context.SaveChangesAsync();
             company.UpdateByOrder(order);

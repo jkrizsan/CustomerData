@@ -79,7 +79,7 @@ namespace CompanyData.Tests.ServiceUnitTests
         public async Task Test_GetCompanyByContactId_1()
         {
 
-            var readCompany =await orderService.GetCompanyByContactId(TestInt);
+            var readCompany =await orderService.GetCompanyById(TestInt);
             Assert.AreEqual(TestInt, readCompany.Id);
             Assert.AreEqual(TestString, readCompany.Name);
         }

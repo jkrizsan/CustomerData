@@ -99,14 +99,12 @@ namespace CompanyData.Tests.ServiceUnitTests
         #region GetAllCompanies
 
         [Test]
-        public async Task Test_GetAllCompanies_ByOrderIsTrue()
+        public async Task Test_GetAllCompanies()
         {
             var company = new Company() { Id = TestInt, Name = TestString };
             var contact = new Contact() { Id = TestInt, FirstName = TestString, MiddleName = TestString, LastName = TestString };
-            var order = new Order() { Id = TestInt, ContactId = TestInt, OrderPrice = TestDouble, OrderDate = DateTime.Now };
             context.Companys.Add(company);
             context.Contacts.Add(contact);
-            context.Orders.Add(order);
             await context.SaveChangesAsync();
             company.Contacts.Add(contact);
             await context.SaveChangesAsync();
@@ -115,7 +113,6 @@ namespace CompanyData.Tests.ServiceUnitTests
 
             Assert.AreEqual(TestInt, companies.Count);
             Assert.AreEqual(TestInt, companies[0].Contacts.Count);
-            Assert.AreEqual(TestInt, companies[0].Contacts[0].Orders.Count);
         }
 
         #endregion GetAllCompanies
