@@ -17,17 +17,6 @@ namespace CompanyData.Web.Controllers
         {
             this.orderService = orderService;
         }
-        // GET: Order
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Order/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Order/Create
         public ActionResult Create(int contactId)
@@ -39,12 +28,12 @@ namespace CompanyData.Web.Controllers
         // POST: Order/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Order order)
+        public async Task<ActionResult> Create(Order order)
         {
             try
             {
 
-                orderService.Add(order);
+                await orderService.Create(order);
                 return RedirectToAction(ActionNames.Edit, ControllerNames.Contact, new { Id = order.ContactId } );
             }
             catch
@@ -54,20 +43,20 @@ namespace CompanyData.Web.Controllers
         }
 
         // GET: Order/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var order = orderService.GetOrderById(id);
+            var order = await orderService.GetOrderById(id);
             return View(order);
         }
 
         // POST: Order/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Order order)
+        public async Task<ActionResult> Edit(int id, Order order)
         {
             try
             {
-                orderService.SaveOrder(order);
+                await orderService.Update(order);
                 return RedirectToAction();
             }
             catch
@@ -77,22 +66,23 @@ namespace CompanyData.Web.Controllers
         }
 
         // GET: Order/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var order = orderService.GetOrderById(id);
+            var order = await orderService.GetOrderById(id);
             return View(order);
         }
 
         // POST: Order/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Order order)
+        public async Task<ActionResult> Delete(int id, Order order)
         {
             try
             {
-
-                orderService.DeleteOrder(id);
-                return RedirectToAction(ActionNames.Index, ControllerNames.DataMap);
+                var oldOrder = await orderService.GetOrderById(order.Id);
+                var contactId = oldOrder.ContactId;
+                await orderService.Delete(order);
+                return RedirectToAction(ActionNames.Edit, ControllerNames.Contact, new { Id = contactId });
             }
             catch
             {

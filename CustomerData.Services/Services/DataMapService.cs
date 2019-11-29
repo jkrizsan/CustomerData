@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CompanyData.Services.Services
 {
@@ -19,9 +20,9 @@ namespace CompanyData.Services.Services
             this.companyService = companyService;
         }
 
-        public IEnumerable<Company> GetAllCompanyData(bool byOrders = true)
+        public async Task<IEnumerable<Company>> GetAllCompanyData()
         {
-            return companyService.GetAllCompanies(byOrders);
+            return await companyService.GetAllCompanies();
         }
     }
 }

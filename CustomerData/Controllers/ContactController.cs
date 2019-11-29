@@ -17,17 +17,6 @@ namespace CompanyData.Web.Controllers
         {
             this.contactService = contactService;
         }
-        // GET: Contact
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Contact/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Contact/Create
         public ActionResult Create(int companyId)
@@ -39,12 +28,12 @@ namespace CompanyData.Web.Controllers
         // POST: Contact/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Contact conatct)
+        public async Task<ActionResult> Create(Contact conatct)
         {
             try
             {
 
-                var contactId = contactService.Add(conatct);
+                var contactId = await contactService.Create(conatct);
                 return RedirectToAction(ActionNames.Edit, ControllerNames.Contact, new { Id = contactId });
             }
             catch(Exception e)
@@ -54,20 +43,20 @@ namespace CompanyData.Web.Controllers
         }
 
         // GET: Contact/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var contact = contactService.GetContactById(id);
+            var contact = await contactService.GetContactById(id);
             return View(contact);
         }
 
         // POST: Contact/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Contact contact)
+        public async Task<ActionResult> Edit(int id, Contact contact)
         {
             try
             {
-                contactService.SaveContact(contact);
+                await contactService.Update(contact);
                 return RedirectToAction();
             }
             catch(Exception e)
@@ -77,20 +66,20 @@ namespace CompanyData.Web.Controllers
         }
 
         // GET: Contact/Delete/5
-        public ActionResult Delete(int Id)
+        public async Task<ActionResult> Delete(int Id)
         {
-            var contact = contactService.GetContactById(Id);
+            var contact = await contactService.GetContactById(Id);
             return View(contact);
         }
 
         // POST: Contact/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int Id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int Id, Contact contact)
         {
             try
             {
-                contactService.DeleteContact(Id);
+                await contactService.Delete(contact);
 
                 return RedirectToAction(ActionNames.Index, ControllerNames.DataMap);
             }

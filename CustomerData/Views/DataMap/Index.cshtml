@@ -36,17 +36,17 @@
         <thead>
             <tr>
                 <th>
-                    @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameParam, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model[0].Name), @ActionNames.Index, new { sortOrder = ViewBag.NameParam, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>Contact Name</th>
                 <th>
-                    @Html.ActionLink("Number of Contacts", "Index", new { sortOrder = ViewBag.NumberOfContactsParam, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model[0].NumberOfContacts), @ActionNames.Index, new { sortOrder = ViewBag.NumberOfContactsParam, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    @Html.ActionLink("Number of Orders", "Index", new { sortOrder = ViewBag.NumberOfOrdersParam, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model[0].NumberOfOrders), @ActionNames.Index, new { sortOrder = ViewBag.NumberOfOrdersParam, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    @Html.ActionLink("Total Income", "Index", new { sortOrder = ViewBag.IncomeParam, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model[0].TotalIncome), @ActionNames.Index, new { sortOrder = ViewBag.IncomeParam, currentFilter = ViewBag.CurrentFilter })
                 </th>
 
         </thead>
@@ -69,7 +69,7 @@
                 {
                     <tr>
                         <td>&nbsp;</td>
-                        <td class="strongTd"><a asp-controller="@ControllerNames.Contact" asp-action="@ActionNames.Edit" asp-route-id="@contact.Id">@contact.FirstName @contact.LastName</a></td>
+                        <td class="Cd"><a asp-controller="@ControllerNames.Contact" asp-action="@ActionNames.Edit" asp-route-id="@contact.Id">@contact.FirstName @contact.LastName</a></td>
                         <td>&nbsp;</td>
                         <td>@contact.NumnerOfOrders</td>
                         <td>@contact.Income</td>

@@ -1,17 +1,16 @@
 ﻿using CompanyData.Data.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace CompanyData.Services.Services
 {
     public interface ICompanyService
     {
-        IEnumerable<Company> GetAllCompanies(bool byOrders = true);
-        IEnumerable<Contact> GetContactsByCompanyId(int Id, bool byOrders = true);
-        Company GetCompanyById(int Id);
-        void SaveCompany(Company company);
-        void DeleteCompany(int id);
-        int Add(Company company);
+        Task<IEnumerable<Company>> GetAllCompanies();
+        Task<IEnumerable<Contact>> GetContactsByCompanyId(int Id);
+        Task<Company> GetCompanyById(int Id);
+        Task Update(Company company);
+        Task Delete(Company company);
+        Task<int> Create(Company company);
     }
 }

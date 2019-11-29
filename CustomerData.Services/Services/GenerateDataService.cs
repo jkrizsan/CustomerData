@@ -39,7 +39,7 @@ namespace CompanyData.Services
 
             for (int i = 0; i < data.CompanyNumber; i++)
             {
-                GenerataCompanies(data);
+                await GenerataCompanies(data);
             }
         }
 
@@ -69,10 +69,15 @@ namespace CompanyData.Services
             var companies = context.Companys.ToList();
             context.Companys.RemoveRange(companies);
 
-            context.SaveChanges();
+            await context.SaveChangesAsync();
+
+            var reports = context.Reports.ToList();
+            context.Reports.RemoveRange(reports);
+
+            await context.SaveChangesAsync();
         }
 
-        public void GenerataCompanies(GenerateDataDto data)
+        public async Task GenerataCompanies(GenerateDataDto data)
         {
             var company = new Company();
             company.Name = GenerateCompanyName();
@@ -80,19 +85,19 @@ namespace CompanyData.Services
             context.Companys.Add(company);
             for (int j = 0; j < company.NumberOfContacts; j++)
             {
-                var contact = GenerataContact(company, data);
+                var contact = await GenerataContact(company, data);
                 for (int k = 0; k < contact.NumnerOfOrders; k++)
                 {
-                    var order = GenerataOrder(contact, data);
+                    var order = await GenerataOrder(contact, data);
                     company.NumberOfOrders++;
                     company.TotalIncome += order.OrderPrice;
                 }
                 company.Contacts.Add(contact);
             }
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        public Contact GenerataContact(Company comnay, GenerateDataDto data)
+        public async Task<Contact> GenerataContact(Company comnay, GenerateDataDto data)
         {
             var contact = new Contact();
             contact.FirstName = firstNames[rnd.Next(firstNames.Count)];
@@ -105,7 +110,7 @@ namespace CompanyData.Services
             return contact;
         }
 
-        public Order GenerataOrder(Contact contact, GenerateDataDto data)
+        public async Task<Order> GenerataOrder(Contact contact, GenerateDataDto data)
         {
             var order = new Order();
             order.OrderDate = DateTime.Now.AddDays(-rnd.Next(0, 100));

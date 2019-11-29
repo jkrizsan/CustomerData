@@ -34,6 +34,8 @@ namespace CompanyData
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IReportService, ReportService>();
+
             var options = new DbContextOptionsBuilder<CompanyDataDbContext>()
                       .Options;
             services.AddDbContext<CompanyDataDbContext>(options =>

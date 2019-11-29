@@ -2,6 +2,7 @@
 using CompanyData.Data.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CompanyData.Services.Services
 {
@@ -13,59 +14,59 @@ namespace CompanyData.Services.Services
         {
             this.context = context;
         }
-        public void Add(Order order)
+        public async Task Create(Order order)
         {
             var contact = context.Contacts.Where(c => c.Id.Equals(order.ContactId)).SingleOrDefault();
             var company = context.Companys.Where(c => c.Id.Equals(contact.CompanyId)).SingleOrDefault();
             contact.AddOrder(order);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             company.AddOrder(order);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        public Order GetOrderById(int Id)
+        public async Task<Order> GetOrderById(int Id)
         {
             return context.Orders.Where(o => o.Id.Equals(Id)).SingleOrDefault();
         }
 
-        public Contact GetContactById(int Id)
+        public async Task<Contact> GetContactById(int Id)
         {
             var contact = context.Contacts.Where(c => c.Id.Equals(Id)).SingleOrDefault();
-            contact.Orders = GetOrdersByContactId(contact.Id).ToList();
+            contact.Orders = (await GetOrdersByContactId(contact.Id)).ToList();
             return contact;
         }
 
-        public Company GetCompanyByContactId(int Id)
+        public async Task<Company> GetCompanyByContactId(int Id)
         {
             var company = context.Companys.Where(c => c.Id.Equals(Id)).SingleOrDefault();
             company.Contacts = context.Contacts.Where(c => c.CompanyId.Equals(company.Id)).ToList();
             return company;
         }
 
-        public void DeleteOrder(int Id)
+        public async Task Delete(Order order)
         {
-            var order = context.Orders.Where(o => o.Id.Equals(Id)).SingleOrDefault();
-            var contact = context.Contacts.Where(c => c.Id.Equals(order.ContactId)).SingleOrDefault();
+            var oldOrder = context.Orders.Where(o => o.Id.Equals(order.Id)).SingleOrDefault();
+            var contact = context.Contacts.Where(c => c.Id.Equals(oldOrder.ContactId)).SingleOrDefault();
             var company = context.Companys.Where(c => c.Id.Equals(contact.CompanyId)).SingleOrDefault();
-            contact.DeleteOrder(order);
-            company.DeleteOrder(order);
-            context.SaveChanges();
+            contact.DeleteOrder(oldOrder);
+            company.DeleteOrder(oldOrder);
+            await context.SaveChangesAsync();
         }
 
-        public IEnumerable<Order> GetOrdersByContactId(int Id)
+        public async Task<IEnumerable<Order>> GetOrdersByContactId(int Id)
         {
             return context.Orders.Where(o => o.ContactId.Equals(Id));
         }
 
-        public void SaveOrder(Order order)
+        public async Task Update(Order order)
         {
-            var oldOrder = GetOrderById(order.Id);
-            var contact = GetContactById(oldOrder.ContactId);
-            var company = GetCompanyByContactId(contact.CompanyId);
+            var oldOrder = await GetOrderById(order.Id);
+            var contact = await GetContactById(oldOrder.ContactId);
+            var company = await GetCompanyByContactId(contact.CompanyId);
             contact.UpdateByOrder(oldOrder, order);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             company.UpdateByOrder(order);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
     }
 }

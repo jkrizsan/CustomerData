@@ -11,5 +11,6 @@ namespace CompanyData.Data.Parameters
         public const string Company = nameof(Company);
         public const string DataMap = nameof(DataMap);
         public const string GenerateData = nameof(GenerateData);
+        public const string Report = nameof(Report);
     }
 }

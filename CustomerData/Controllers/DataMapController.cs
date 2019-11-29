@@ -20,13 +20,13 @@ namespace CompanyData.Web.Controllers
         public DataMapController(IDataMapService dataMapService)
         {
             this.dataMapService = dataMapService;
-            Companies = dataMapService.GetAllCompanyData(false).ToList();
         }
 
         // GET: DataMap
         public async Task<ActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
-            
+            Companies = (await dataMapService.GetAllCompanyData()).ToList();
+
             ViewData[SortingParameters.NameParam] = sortOrder == SortingParameters.NameAsc
                 ? SortingParameters.NameDesc 
                 : SortingParameters.NameAsc;
@@ -54,14 +54,14 @@ namespace CompanyData.Web.Controllers
 
             ViewData[SortingParameters.CurrentFilter] = searchString;
 
-            OrderByCompanyParameters(sortOrder);
-            FilterByCompanyParameters(searchString);
+            await OrderByCompanyParameters(sortOrder);
+            await FilterByCompanyParameters(searchString);
             int pageSize = 10;
             var result = PaginatedList<Company>.Create(Companies, pageNumber ?? 1, pageSize);
             return View(result);
         }
 
-        private void FilterByCompanyParameters(string searchString)
+        private async Task FilterByCompanyParameters(string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
             {
@@ -71,7 +71,7 @@ namespace CompanyData.Web.Controllers
             Companies = Companies.Where(c => c.Name.Contains(searchString)).ToList();
         }
 
-        private void OrderByCompanyParameters(string sortOrder)
+        private async Task OrderByCompanyParameters(string sortOrder)
         {
             if (string.IsNullOrEmpty(sortOrder))
             {
@@ -107,20 +107,5 @@ namespace CompanyData.Web.Controllers
                     break;
             }
         }
-
-        public ActionResult Edit()
-        {
-            Companies = dataMapService.GetAllCompanyData().ToList();
-            return View(Companies);
-        }
-
-        // GET: DataMap/Edit/5
-        public ActionResult Edit(int id)
-        {
-             //indexCompany.OnGetAsync();
-            Companies = dataMapService.GetAllCompanyData().ToList();
-            return View(Companies);
-        }
-
     }
 }

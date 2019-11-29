@@ -8,8 +8,7 @@ namespace CompanyData.Services.Services
     {
         Task RemoveAllCompanyData();
         Task GenerataData(GenerateDataDto data);
-        void GenerataCompanies(GenerateDataDto data);
-        Contact GenerataContact(Company comnay,GenerateDataDto data);
-        Order GenerataOrder(Contact contact, GenerateDataDto data);
+        Task GenerataCompanies(GenerateDataDto data);
+        Task<Contact> GenerataContact(Company comnay,GenerateDataDto data);
     }
 }
