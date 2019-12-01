@@ -27,7 +27,7 @@ namespace CompanyData.Web.Controllers
         }
 
         public async Task<ActionResult> Index(string sortOrder, string currentFilter, string searchString,
-                                        int? pageNumber, DateTime? startDate = null, DateTime? endDate = null)
+                                        int? pageNumber, DateTime? startDate=null, DateTime? endDate = null)
         {
             Reports = (await reportService.GetAllReports()).ToList();
 

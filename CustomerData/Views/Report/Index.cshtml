@@ -19,15 +19,13 @@
             text-align: center;
         }
     </style>
-    <form asp-action="Index" method="get">
-        <div class="form-actions no-color">
-            <p>
-                Find Report: <input type="text" name="SearchString" value="@ViewBag.CurrentFilter" />
-                Start Date: <input type="date" name="startDate" @ViewBag.CurrentStartDateTime" />
-                End Date: <input type="date" name="endDate" @ViewBag.CurrentEndDateTime" />
-                <input type="submit" value="Search" class="btn btn-default" />
-            </p>
-            
+    <form asp-action="Index">
+        <div class="form-group">
+            Find Report: <input type="text" name="SearchString" value="@ViewBag.CurrentFilter" />
+            Start Date: <input type="date" name="StartDate" value="@ViewBag.CurrentStartDateTime?.ToString("yyyy-MM-dd")" />        
+            End Date: <input type="date" name="EndDate" value="@ViewBag.CurrentEndDateTime?.ToString("yyyy-MM-dd")" />
+            <input type="submit" value="Search" class="btn btn-default" />
+
         </div>
     </form>
 
@@ -89,16 +87,20 @@
     }
 
     <a asp-action="@ActionNames.Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-sortOrder="@ViewData[SortingParameters.CurrentSort]"
        asp-route-pageNumber="@(Model.PageIndex - 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       asp-route-currentFilter="@ViewData[SortingParameters.CurrentFilter]"
+       asp-route-startDate="@ViewData[SortingParameters.CurrentStartDateTime]"
+       asp-route-endDate="@ViewData[SortingParameters.CurrentEndDateTime]"
        class="btn btn-default @prevDisabled">
         Previous
     </a>
     <a asp-action="@ActionNames.Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-sortOrder="@ViewData[SortingParameters.CurrentSort]"
        asp-route-pageNumber="@(Model.PageIndex + 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       asp-route-currentFilter="@ViewData[SortingParameters.CurrentFilter]"
+       asp-route-startDate="@ViewData[SortingParameters.CurrentStartDateTime]"
+       asp-route-endDate="@ViewData[SortingParameters.CurrentEndDateTime]"
        class="btn btn-default @nextDisabled">
         Next
     </a>

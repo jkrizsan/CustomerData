@@ -29,6 +29,7 @@ namespace CompanyData.Data.Parameters
         public const string DateTimeDesc = nameof(DateTimeDesc);
 
         public const string CurrentFilter = nameof(CurrentFilter);
+        public const string CurrentSort = nameof(CurrentSort);
 
         public const string CurrentStartDateTime = nameof(CurrentStartDateTime);
         public const string CurrentEndDateTime = nameof(CurrentEndDateTime);
