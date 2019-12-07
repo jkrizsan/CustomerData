@@ -2,6 +2,7 @@
 using CompanyData.Data.DTOs;
 using CompanyData.Data.Models;
 using CompanyData.Services.Services;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,6 @@ namespace CompanyData.Services
 
         public async Task GenerataData(GenerateDataDto data)
         {
-
             for (int i = 0; i < data.CompanyNumber; i++)
             {
                 await GenerataCompanies(data);
@@ -60,18 +60,18 @@ namespace CompanyData.Services
 
         public async Task RemoveAllCompanyData()
         {
-            var orders = context.Orders.ToList();
+            var orders = await context.Orders.ToListAsync();
             context.Orders.RemoveRange(orders);
 
-            var conatcts = context.Contacts.ToList();
+            var conatcts = await context.Contacts.ToListAsync();
             context.Contacts.RemoveRange(conatcts);
 
-            var companies = context.Companys.ToList();
+            var companies = await context.Companys.ToListAsync();
             context.Companys.RemoveRange(companies);
 
             await context.SaveChangesAsync();
 
-            var reports = context.Reports.ToList();
+            var reports = await context.Reports.ToListAsync();
             context.Reports.RemoveRange(reports);
 
             await context.SaveChangesAsync();

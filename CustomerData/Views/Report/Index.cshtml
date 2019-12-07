@@ -1,35 +1,85 @@
 ﻿@using CompanyData.Data.Parameters;
 @using CompanyData.Web
+
 @model PaginatedList<CompanyData.Data.Models.Report>
 
 @{
     ViewBag.Title = "View";
     Layout = "~/Views/Home/_Layout.cshtml";
 }
+    <head>
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script>
+            
+            $(document).ready(function () {                
+                $('#ReportDataTable tr').hover(function () {
+                    var id = $(this).hover().find("td:eq(1)").text().split(":")[1];
+                    $("#ReportDataTable tr").each(function () {
+                        var id2 = $(this).find("td:eq(1)").text().split(":")[1];
+                        if (id == id2) {
+                            $(this).css("background-color", "yellow");
+                        }
+                            
+                    });
+                });
+            });
+        </script>
+        @*<script>
+            $(document).ready(function () {
+                alert(1);
+                $('#ReportDataTable tr').on('hover', function () {
 
+                    var name = $(this).children("td:eq(1)").text();
+
+                    alert("ID:" + name);
+                });
+            });
+        </script>*@
+    </head>
 <div id="DataMap" style="width:100%; margin: 0 auto;">
-    <style>
-
-        table, th, td {
-            border-collapse: collapse;
+    <style type="text/css">
+        .DBTable {
+            width: 100%;
         }
 
-        th, td {
-            padding: 5px;
-            text-align: center;
+        .DBToprow {
+            font-size: 180%;
+            font-weight: 600;
         }
+
+        .DBTable td {
+            font-size: 50%;
+            padding: 7px;
+        }
+
+        .DBTable th {
+            border-style: solid;
+            border-width: 1px;
+            padding: 7px;
+        }
+
+        .DBTable tr {
+            border-style: solid;
+            border-width: 1px;
+        }
+
+
+            .DBTable tr:hover {
+                background-color: yellow;
+            }
     </style>
+
     <form asp-action="Index">
         <div class="form-group">
             Find Report: <input type="text" name="SearchString" value="@ViewBag.CurrentFilter" />
-            Start Date: <input type="date" name="StartDate" value="@ViewBag.CurrentStartDateTime?.ToString("yyyy-MM-dd")" />        
+            Start Date: <input type="date" name="StartDate" value="@ViewBag.CurrentStartDateTime?.ToString("yyyy-MM-dd")" />
             End Date: <input type="date" name="EndDate" value="@ViewBag.CurrentEndDateTime?.ToString("yyyy-MM-dd")" />
             <input type="submit" value="Search" class="btn btn-default" />
 
         </div>
     </form>
 
-    <table id="ReportDataTable" class="display" style="width:100%" border="1">
+    <table id="ReportDataTable" class="DBTable">
         <thead>
             <tr>
                 <th>
@@ -47,37 +97,36 @@
                 <th>
                     @Html.DisplayNameFor(model => model[0].NewValues)
                 </th>
-       </thead>
+        </thead>
         <tbody>
 
             @foreach (var report in Model)
             {
-            <tr>
-                <td>@report.TableName</td>
-                <td>@report.KeyValues</td>
-                <td>@report.DateTime</td>
-                <td>
-                    @if (@report.OldValues == null)
-                    {
-                        @report.OldValues
-                    }
-                    else
-                    {
-                        <a asp-controller="@ControllerNames.Report" asp-action="@ActionNames.View" asp-route-Id="@report.Id">@(report.OldValues.Length > 20 ? report.OldValues.Substring(0, 20) : report.OldValues)</a>
-                    }
-                </td>
-                <td>
-                    @if (@report.NewValues == null)
-                    {
-                        @report.NewValues
-                    }
-                    else
-                    {
-                        <a asp-controller="@ControllerNames.Report" asp-action="@ActionNames.View" asp-route-Id="@report.Id">@(report.NewValues.Length > 20 ? report.NewValues.Substring(0, 20) : report.NewValues)</a>
-
-                    }
-                </td>
-            </tr>
+                <tr class="DBToprow">
+                    <td>@report.TableName</td>
+                    <td>@report.KeyValues</td>
+                    <td>@report.DateTime</td>
+                    <td>
+                        @if (@report.OldValues == null)
+                        {
+                            @report.OldValues
+                        }
+                        else
+                        {
+                            <a asp-controller="@ControllerNames.Report" asp-action="@ActionNames.View" asp-route-Id="@report.Id">@(report.OldValues.Length > 20 ? report.OldValues.Substring(0, 20) : report.OldValues)</a>
+                        }
+                    </td>
+                    <td>
+                        @if (@report.NewValues == null)
+                        {
+                            @report.NewValues
+                        }
+                        else
+                        {
+                            <a asp-controller="@ControllerNames.Report" asp-action="@ActionNames.View" asp-route-Id="@report.Id">@(report.NewValues.Length > 20 ? report.NewValues.Substring(0, 20) : report.NewValues)</a>
+                        }
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
