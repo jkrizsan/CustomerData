@@ -55,3 +55,6 @@ CustomerData/.vs/CompanyData/v16/Server/sqlite3/storage.ide
 CustomerData/.vs/CompanyData/v16/.suo
 CustomerData/.vs/CompanyData/DesignTimeBuild/.dtbcache
 CompanyData.Tests/bin/Debug/netcoreapp3.0/nunit_random_seed.tmp
+CustomerData/.vs/CompanyData/v16/.suo
+*.ide
+CustomerData/.vs/CompanyData/DesignTimeBuild/.dtbcache
