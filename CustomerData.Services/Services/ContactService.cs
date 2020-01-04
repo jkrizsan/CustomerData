@@ -21,12 +21,22 @@ namespace CompanyData.Services.Services
 
         public async Task DeleteOrders(Contact contact)
         {
+            if (contact is null)
+            {
+                throw new ArgumentNullException();
+            }
+
             context.RemoveRange(contact.Orders);
             await context.SaveChangesAsync();
         }
 
         public async Task Delete(Contact contact)
         {
+            if (contact is null)
+            {
+                throw new ArgumentNullException();
+            }
+
             var oldContact = await GetContactById(contact.Id);
             var company = context.Companys.Where(c => c.Id.Equals(oldContact.CompanyId)).SingleOrDefault();
             company.RemoveContact(oldContact);
@@ -42,6 +52,11 @@ namespace CompanyData.Services.Services
 
         public async Task Update(Contact contact)
         {
+            if (contact is null)
+            {
+                throw new ArgumentNullException();
+            }
+
             var oldContact = await GetContactById(contact.Id);
             oldContact.FirstName = contact.FirstName;
             oldContact.MiddleName = contact.MiddleName;
@@ -51,6 +66,11 @@ namespace CompanyData.Services.Services
 
         public async Task<int> Create(Contact conatct)
         {
+            if (conatct is null)
+            {
+                throw new ArgumentNullException();
+            }
+
             var company = context.Companys.Where(c => c.Id.Equals(conatct.CompanyId)).SingleOrDefault();
             company.Contacts.Add(conatct);
             company.UpdateContactNumber();

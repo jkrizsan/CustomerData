@@ -26,6 +26,11 @@ namespace CompanyData.Tests.ServiceUnitTests
         }
 
         #region Add
+        [Test]
+        public async Task Test_Add_Exception()
+        {
+            Assert.That(async () => await companyService.Create(null), Throws.ArgumentNullException);
+        }
 
         [Test]
         public async Task Test_Add_1()
@@ -40,6 +45,12 @@ namespace CompanyData.Tests.ServiceUnitTests
         #endregion Add
 
         #region DeleteCompany
+        [Test]
+        public async Task Test_DeleteCompany_Exception()
+        {
+            Assert.That(async () => await companyService.Delete(null), Throws.ArgumentNullException);
+        }
+
         [Test]
         public async Task Test_DeleteCompany_NoContactsNoOrders()
         {
@@ -160,6 +171,12 @@ namespace CompanyData.Tests.ServiceUnitTests
         #endregion GetContactsByCompanyId
 
         #region SaveCompany
+
+        [Test]
+        public async Task Test_SaveCompany_Exception()
+        {
+            Assert.That(async () => await companyService.Update(null), Throws.ArgumentNullException);
+        }
 
         [Test]
         public async Task Test_SaveCompany()

@@ -37,6 +37,11 @@ namespace CompanyData.Services
 
         public async Task GenerataData(GenerateDataDto data)
         {
+            if (data is null)
+            {
+                throw new ArgumentNullException();
+            }
+
             for (int i = 0; i < data.CompanyNumber; i++)
             {
                 await GenerataCompanies(data);
@@ -79,6 +84,11 @@ namespace CompanyData.Services
 
         public async Task GenerataCompanies(GenerateDataDto data)
         {
+            if (data is null)
+            {
+                throw new ArgumentNullException();
+            }
+
             var company = new Company();
             company.Name = GenerateCompanyName();
             company.NumberOfContacts = rnd.Next(data.MinContactNumber, data.MaxContactNumber);
@@ -99,6 +109,10 @@ namespace CompanyData.Services
 
         public async Task<Contact> GenerataContact(Company comnay, GenerateDataDto data)
         {
+            if (data is null || comnay is null)
+            {
+                throw new ArgumentNullException();
+            } 
             var contact = new Contact();
             contact.FirstName = firstNames[rnd.Next(firstNames.Count)];
             contact.MiddleName = rnd.Next(0, 10) > 5 ? rnd.Next(0, 10) > 5 ? firstNames[rnd.Next(firstNames.Count)]
@@ -112,6 +126,10 @@ namespace CompanyData.Services
 
         public async Task<Order> GenerataOrder(Contact contact, GenerateDataDto data)
         {
+            if (data is null || contact is null)
+            {
+                throw new ArgumentNullException();
+            }
             var order = new Order();
             order.OrderDate = DateTime.Now.AddDays(-rnd.Next(0, 100));
             order.OrderPrice = rnd.Next(data.MinOrderPrice, data.MaxOrderPrice);

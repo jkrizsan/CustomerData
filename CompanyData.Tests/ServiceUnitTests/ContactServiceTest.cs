@@ -38,6 +38,14 @@ namespace CompanyData.Tests.ServiceUnitTests
         #region DeleteOrders
 
         [Test]
+        public void Test_DeleteOrders_NoResult()
+        {
+            contactService.DeleteOrders(null);
+            var readOrder = context.Orders.Where(c => c.Id.Equals(TestInt)).SingleOrDefault();
+            Assert.AreNotEqual(null, readOrder);
+        }
+
+        [Test]
         public void Test_DeleteOrders_1()
         {
             contactService.DeleteOrders(contact);
@@ -48,6 +56,12 @@ namespace CompanyData.Tests.ServiceUnitTests
         #endregion DeleteOrders
 
         #region DeleteContact
+
+        [Test]
+        public async Task Test_DeleteContact_Delete()
+        {
+            Assert.That(async () => await contactService.Delete(null), Throws.ArgumentNullException);
+        }
 
         [Test]
         public async Task Test_DeleteContact_1()
@@ -72,6 +86,11 @@ namespace CompanyData.Tests.ServiceUnitTests
         #endregion GetContactById
 
         #region SaveContact
+        [Test]
+        public async Task Test_Update_Exception()
+        {
+            Assert.That(async () => await contactService.Update(null), Throws.ArgumentNullException);
+        }
 
         [Test]
         public async Task Test_Update_1()
@@ -86,6 +105,12 @@ namespace CompanyData.Tests.ServiceUnitTests
         #endregion SaveContact
 
         #region Add
+
+        [Test]
+        public async Task Test_Create_Exception()
+        {
+            Assert.That(async () => await contactService.Create(null), Throws.ArgumentNullException);
+        }
 
         [Test]
         public async Task Test_Create_1()

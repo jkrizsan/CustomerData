@@ -23,9 +23,12 @@ namespace CompanyData.Services.Services
             this.contactService = contactService;
             this.orderService = orderService;
         }
-        
         public async Task<int> Create(Company company)
         {
+            if (company is null)
+            {
+                throw new ArgumentNullException();
+            }
             context.Companys.Add(company);
             await context.SaveChangesAsync();
             return company.Id;
@@ -33,6 +36,10 @@ namespace CompanyData.Services.Services
 
         public async Task Delete(Company company)
         {
+            if (company is null)
+            {
+                throw new ArgumentNullException();
+            }
             foreach (var item in company.Contacts)
             {
                 await contactService.DeleteOrders(item);
@@ -60,6 +67,11 @@ namespace CompanyData.Services.Services
 
         public async Task Update(Company company)
         {
+            if (company is null)
+            {
+                throw new ArgumentNullException();
+            }
+
             var oldCompany = await GetCompanyById(company.Id);
             oldCompany.Name = company.Name;
             await context.SaveChangesAsync();

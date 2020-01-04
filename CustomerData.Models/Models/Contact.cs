@@ -27,13 +27,22 @@ namespace CompanyData.Data.Models
 
         public void AddOrder(Order order)
         {
+            if (order is null)
+            {
+                return;
+            }
+
             Orders.Add(order);
             NumnerOfOrders++;
             Income += order.OrderPrice;
         }
 
         public void UpdateByOrder(Order oldOrder, Order order)
-        {            
+        {
+            if (order is null || oldOrder is null)
+            {
+                return;
+            }
             oldOrder.OrderDate = order.OrderDate;
             oldOrder.OrderPrice = order.OrderPrice;
             Income = 0;
@@ -44,6 +53,10 @@ namespace CompanyData.Data.Models
         }
         public void DeleteOrder (Order order)
         {
+            if (order is null)
+            {
+                return;
+            }
             Income -= order.OrderPrice;
             NumnerOfOrders--;
             Orders.Remove(order);

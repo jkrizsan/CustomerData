@@ -8,7 +8,7 @@
 }
 
 <div>
-    <a asp-action="@ActionNames.Create" asp-controller="@ControllerNames.Company">Create New Company</a>
+    <a asp-action="@ActionNames.Create" asp-controller="@ControllerNames.Company" target="_blank">Create New Company</a>
 </div>
 
 <div id="DataMap" style="width:100%; margin: 0 auto; border:1px solid blue;">
@@ -55,13 +55,13 @@
             @foreach (var company in Model)
             {
                 <tr>
-                    <td class="strongTd"><a asp-controller="@ControllerNames.Company" asp-action="@ActionNames.Edit" asp-route-id="@company.Id">@company.Name</a></td>
+                    <td class="strongTd"><a asp-controller="@ControllerNames.Company" asp-action="@ActionNames.Edit" asp-route-id="@company.Id" target="_blank">@company.Name</a></td>
                     <td>&nbsp;</td>
                     <td>@company.NumberOfContacts</td>
                     <td>Total: @company.NumberOfOrders</td>
                     <td>Total: @company.TotalIncome</td>
                     <td>
-                        <a asp-action="@ActionNames.Edit" asp-controller="@ControllerNames.Company" asp-route-id="@company.Id">Edit</a>
+                        <a asp-action="@ActionNames.Edit" asp-controller="@ControllerNames.Company" asp-route-id="@company.Id" target="_blank">Edit</a>
                         <a asp-action="@ActionNames.Delete" asp-controller="@ControllerNames.Company" asp-route-id="@company.Id">Delete</a>
                     </td>
                 </tr>
@@ -74,7 +74,7 @@
                         <td>@contact.NumnerOfOrders</td>
                         <td>@contact.Income</td>
                         <td>
-                            <a asp-action="@ActionNames.Edit" asp-controller="@ControllerNames.Contact" asp-route-id="@contact.Id">Edit</a>
+                            <a asp-action="@ActionNames.Edit" asp-controller="@ControllerNames.Contact" asp-route-id="@contact.Id" target="_blank">Edit</a>
                             <a asp-action="@ActionNames.Delete" asp-controller="@ControllerNames.Contact" asp-route-id="@contact.Id">Delete</a>
                         </td>
                     </tr>
