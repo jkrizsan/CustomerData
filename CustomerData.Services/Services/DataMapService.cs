@@ -11,6 +11,7 @@ namespace CompanyData.Services.Services
     public class DataMapService: IDataMapService
     {
 
+        lofasz
         CompanyDataDbContext context;
         ICompanyService companyService;
 
